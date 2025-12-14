@@ -1,0 +1,229 @@
+* { box-sizing: border-box; }
+html, body, #app { min-height: 100%; }
+
+:root {
+	color-scheme: light;
+	--max-width: 1080px;
+	--primary: #2563eb;
+	--primary-strong: #1d4ed8;
+	--text: #0f172a;
+	--text-strong: #020617;
+	--muted: #475569;
+	--heading: #0f172a;
+	--surface: rgba(255, 255, 255, 0.55);
+	--surface-border: rgba(255, 255, 255, 0.45);
+	--surface-shadow: 0 30px 60px rgba(15, 23, 42, 0.12);
+	--body-base: #f8fbff;
+	--body-gradient:
+		radial-gradient(circle at 10% 20%, rgba(94, 234, 212, 0.35), transparent 40%),
+		radial-gradient(circle at 90% 10%, rgba(129, 140, 248, 0.25), transparent 35%),
+		linear-gradient(120deg, #eef2ff, #f8fbff 60%, #f4f6fb);
+	/* --body-wallpaper: var(--body-gradient); */
+    --body-wallpaper: url('/noel.jpg') center/cover fixed no-repeat;
+	--noise-opacity: 0.2;
+	--noise-blend: multiply;
+	--main-shell-bg: rgba(255, 255, 255, 0.5);
+	--main-shell-border: rgba(255, 255, 255, 0.55);
+	--nav-bg: rgba(255, 255, 255, 0.35);
+	--nav-border: rgba(255, 255, 255, 0.5);
+	--nav-text: #0f172a;
+	--nav-active-bg: rgba(37, 99, 235, 0.12);
+	--nav-active-text: #1d4ed8;
+	--footer-bg: rgba(255, 255, 255, 0.35);
+	--footer-border: rgba(255, 255, 255, 0.45);
+	--footer-text: rgba(71, 85, 105, 0.9);
+	--card-bg: rgba(255, 255, 255, 0.4);
+	--card-border: rgba(255, 255, 255, 0.5);
+	--card-text: #0f172a;
+	--card-meta: rgba(71, 85, 105, 0.9);
+	--card-shadow: 0 30px 60px rgba(15, 23, 42, 0.12);
+	--chip-bg: rgba(255, 255, 255, 0.35);
+	--chip-border: rgba(59, 130, 246, 0.25);
+	--panel-bg: rgba(255, 255, 255, 0.4);
+	--panel-border: rgba(255, 255, 255, 0.45);
+	--panel-divider: rgba(148, 163, 184, 0.3);
+	--panel-label: #0f172a;
+	--panel-desc: rgba(71, 85, 105, 0.9);
+	--hero-grad-start: rgba(255, 255, 255, 0.1);
+	--hero-grad-end: rgba(226, 240, 255, 0.03);
+	--hero-panel-bg: rgba(255, 255, 255, 0.35);
+	--avatar-grad-start: rgba(59, 130, 246, 0.95);
+	--avatar-grad-end: rgba(14, 165, 233, 0.8);
+	--avatar-ring: rgba(59, 130, 246, 0.35);
+}
+
+[data-theme='dark'] {
+	color-scheme: dark;
+	--primary: #7dd3fc;
+	--primary-strong: #38bdf8;
+	--text: #e2e8f0;
+	--text-strong: #f8fafc;
+	--muted: #94a3b8;
+	--heading: #f8fafc;
+	--surface: rgba(2, 6, 23, 0.6);
+	--surface-border: rgba(148, 163, 184, 0.25);
+	--surface-shadow: 0 25px 70px rgba(2, 6, 23, 0.55);
+	--body-base: #020617;
+	--body-gradient:
+		radial-gradient(circle at 20% 20%, rgba(124, 58, 237, 0.35), transparent 45%),
+		radial-gradient(circle at 80% 0%, rgba(14, 165, 233, 0.35), transparent 35%),
+		linear-gradient(120deg, #030712, #0f172a 60%, #0b1120);
+	--body-wallpaper: url('/noel.jpg') center/cover fixed no-repeat;
+	--noise-opacity: 0.6;
+	--noise-blend: screen;
+	--main-shell-bg: rgba(2, 6, 23, 0.55);
+	--main-shell-border: rgba(148, 163, 184, 0.32);
+	--nav-bg: rgba(2, 6, 23, 0.4);
+	--nav-border: rgba(148, 163, 184, 0.35);
+	--nav-text: rgba(226, 232, 240, 0.86);
+	--nav-active-bg: rgba(125, 211, 252, 0.22);
+	--nav-active-text: var(--primary);
+	--footer-bg: rgba(2, 6, 23, 0.45);
+	--footer-border: rgba(148, 163, 184, 0.28);
+	--footer-text: rgba(226, 232, 240, 0.75);
+	--card-bg: rgba(15, 23, 42, 0.45);
+	--card-border: rgba(255, 255, 255, 0.12);
+	--card-text: #f8fafc;
+	--card-meta: rgba(226, 232, 240, 0.7);
+	--card-shadow: 0 30px 60px rgba(14, 165, 233, 0.35);
+	--chip-bg: rgba(125, 211, 252, 0.18);
+	--chip-border: rgba(125, 211, 252, 0.3);
+	--panel-bg: rgba(2, 6, 23, 0.55);
+	--panel-border: rgba(255, 255, 255, 0.1);
+	--panel-divider: rgba(148, 163, 184, 0.25);
+	--panel-label: #f8fafc;
+	--panel-desc: rgba(148, 163, 184, 0.9);
+	--hero-grad-start: rgba(15, 23, 42, 0.18);
+	--hero-grad-end: rgba(8, 145, 178, 0.05);
+	--hero-panel-bg: rgba(2, 6, 23, 0.55);
+	--avatar-grad-start: rgba(14, 165, 233, 0.9);
+	--avatar-grad-end: rgba(79, 70, 229, 0.75);
+	--avatar-ring: rgba(125, 211, 252, 0.4);
+}
+
+body {
+	margin: 0;
+	font-family: 'Space Grotesk', 'Noto Sans SC', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+	color: var(--text);
+	line-height: 1.7;
+	background: var(--body-wallpaper);
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+body::after {
+	content: '';
+	position: fixed;
+	inset: 0;
+	background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120"%3E%3Crect width="1" height="1" fill="white" opacity="0.04"/%3E%3C/svg%3E');
+	opacity: var(--noise-opacity);
+	pointer-events: none;
+	mix-blend-mode: var(--noise-blend);
+}
+
+#app {
+	min-height: 100%;
+	position: relative;
+	isolation: isolate;
+}
+
+a {
+	color: var(--primary);
+	text-decoration: none;
+}
+
+.container {
+	max-width: var(--max-width);
+	margin: 0 auto;
+	padding: 0 20px;
+}
+
+.main-shell {
+	margin: 40px auto 64px;
+	padding: 40px;
+	border-radius: 28px;
+	background: var(--main-shell-bg);
+	border: 1px solid var(--main-shell-border);
+	backdrop-filter: blur(24px);
+	box-shadow: var(--surface-shadow);
+}
+
+h1, h2, h3, h4 {
+	color: var(--heading);
+	letter-spacing: 0.02em;
+}
+
+p {
+	color: var(--muted);
+}
+
+.content pre {
+	margin: 24px 0;
+	padding: 20px;
+	border-radius: 18px;
+	background: var(--panel-bg);
+	border: 1px solid var(--panel-border);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+	font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+	font-size: 0.95rem;
+	line-height: 1.65;
+	overflow-x: auto;
+	position: relative;
+}
+
+.content pre code {
+	display: block;
+	background: none;
+	color: var(--heading);
+}
+
+.content code:not(pre code) {
+	padding: 2px 6px;
+	border-radius: 6px;
+	background: rgba(37, 99, 235, 0.08);
+	color: var(--text-strong);
+	font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+	font-size: 0.95em;
+}
+
+.rise-flow > * {
+	opacity: 0;
+	transform: translateY(32px);
+	animation: rise-up 0.75s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+	will-change: opacity, transform;
+}
+
+.rise-flow > *:nth-child(1) { animation-delay: 0.05s; }
+.rise-flow > *:nth-child(2) { animation-delay: 0.12s; }
+.rise-flow > *:nth-child(3) { animation-delay: 0.18s; }
+.rise-flow > *:nth-child(4) { animation-delay: 0.24s; }
+.rise-flow > *:nth-child(5) { animation-delay: 0.3s; }
+.rise-flow > *:nth-child(6) { animation-delay: 0.36s; }
+
+@keyframes rise-up {
+	0% {
+		opacity: 0;
+		transform: translateY(36px) scale(0.985);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.rise-flow > * {
+		animation: none !important;
+		opacity: 1;
+		transform: none;
+	}
+}
+
+@media (max-width: 640px) {
+	.main-shell {
+		padding: 24px;
+		border-radius: 20px;
+	}
+}
