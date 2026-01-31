@@ -65,3 +65,10 @@ jobs:
 
       - name: Run Astro Build
         run: pnpm astro build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@373f7f263a7fc0ad080176c0d47981c2c7aaa196 # v3.9.3
+        if: github.ref == 'refs/heads/main'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
