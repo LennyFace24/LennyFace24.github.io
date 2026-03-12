@@ -147,8 +147,6 @@ const bannerOffset =
 
 		<link rel="alternate" type="application/rss+xml" title={profileConfig.name} href={`${Astro.site}rss.xml`}/>
 
-		<script defer src="https://cloud.umami.is/script.js" data-website-id="aad4376c-e3ff-45d4-ac57-1aad8b2ef7ae"></script>
-
 	</head>
 	<body class=" min-h-screen transition " class:list={[{"lg:is-home": isHomePage, "enable-banner": enableBanner}]}
 		  data-overlayscrollbars-initialize
@@ -433,14 +431,6 @@ const setup = () => {
 		const heightExtend = document.getElementById('page-height-extend')
 		if (heightExtend) {
 			heightExtend.classList.remove('hidden')
-		}
-
-		// Track page view with Umami
-		if (window.umami) {
-			window.umami.track('page_view', {
-				url: window.location.pathname,
-				title: document.title
-			})
 		}
 	});
 	window.swup.hooks.on('visit:end', (_visit: {to: {url: string}}) => {

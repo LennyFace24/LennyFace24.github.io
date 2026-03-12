@@ -11,9 +11,6 @@ declare global {
 				}>;
 			}>;
 		};
-		umami?: {
-			track: (eventName: string, options?: Record<string, any>) => void;
-		};
 	}
 }
 
