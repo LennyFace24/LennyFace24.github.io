@@ -11,17 +11,17 @@ draft: false
 
 不知道大家有没有遇到过这样的情况
 
-<img src="image.png" width="300">
+<img src="../../assets/extension-2026-04-04/image.png" width="300">
 
 向ai提问并阅读ai返回的内容时，可能我们看到一半，出现一个我们不认识的概念
 
-<img src="image-1.png" width="300">
+<img src="../../assets/extension-2026-04-04/image-1.png" width="300">
 
 (Ada Lovelace是啥玩意？？)
 
 我们想知道这是啥，就得接着问ai
 
-<img src="image-2.png" width="300">
+<img src="../../assets/extension-2026-04-04/image-2.png" width="300">
 
 这一个问题还好，可是如果中间出现了多个我们看不懂得概念呢。。
 
@@ -37,11 +37,11 @@ draft: false
 
 因为我之前使用的时候经常被这个锁困扰，所以我就vibe了一个插件，一个ai对话悬浮窗，可以随时向它提问
 
-<img src="image-3.png" width="300">
+<img src="../../assets/extension-2026-04-04/image-3.png" width="300">
 
 这样就不必在意新的聊天记录会淹没最开始的记录了！
 
-<img src="image-4.png" width="300">
+<img src="../../assets/extension-2026-04-04/image-4.png" width="300">
 
 目前只支持第三方接入
 支持anthropic格式和openai格式
