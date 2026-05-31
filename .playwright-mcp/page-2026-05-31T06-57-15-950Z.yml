@@ -1,0 +1,344 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - link "Skip to content" [ref=e4] [cursor=pointer]:
+        - /url: "#start-of-content"
+      - banner [ref=e6]:
+        - heading "Navigation Menu" [level=2] [ref=e7]
+        - generic [ref=e8]:
+          - link "Homepage" [ref=e10] [cursor=pointer]:
+            - /url: /
+            - img [ref=e11]
+          - generic [ref=e13]:
+            - navigation "Global" [ref=e16]:
+              - list [ref=e17]:
+                - listitem [ref=e18]:
+                  - button "Platform" [ref=e20] [cursor=pointer]:
+                    - text: Platform
+                    - img [ref=e21]
+                - listitem [ref=e23]:
+                  - button "Solutions" [ref=e25] [cursor=pointer]:
+                    - text: Solutions
+                    - img [ref=e26]
+                - listitem [ref=e28]:
+                  - button "Resources" [ref=e30] [cursor=pointer]:
+                    - text: Resources
+                    - img [ref=e31]
+                - listitem [ref=e33]:
+                  - button "Open Source" [ref=e35] [cursor=pointer]:
+                    - text: Open Source
+                    - img [ref=e36]
+                - listitem [ref=e38]:
+                  - button "Enterprise" [ref=e40] [cursor=pointer]:
+                    - text: Enterprise
+                    - img [ref=e41]
+                - listitem [ref=e43]:
+                  - link "Pricing" [ref=e44] [cursor=pointer]:
+                    - /url: https://github.com/pricing
+                    - generic [ref=e45]: Pricing
+            - generic [ref=e46]:
+              - button "Search or jump to…" [ref=e49] [cursor=pointer]:
+                - img [ref=e51]
+              - link "Sign in" [ref=e54] [cursor=pointer]:
+                - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Fafoim%2Feasy_cover
+              - link "Sign up" [ref=e55] [cursor=pointer]:
+                - /url: /signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F%3Cuser-name%3E%2F%3Crepo-name%3E&source=header-repo&source_repo=afoim%2Feasy_cover
+              - button "Appearance settings" [ref=e58] [cursor=pointer]:
+                - img
+    - main [ref=e62]:
+      - generic [ref=e63]:
+        - generic [ref=e64]:
+          - generic [ref=e66]:
+            - img [ref=e67]
+            - link "afoim" [ref=e70] [cursor=pointer]:
+              - /url: /afoim
+            - generic [ref=e71]: /
+            - strong [ref=e72]:
+              - link "easy_cover" [ref=e73] [cursor=pointer]:
+                - /url: /afoim/easy_cover
+            - generic [ref=e74]: Public
+          - generic [ref=e75]:
+            - list:
+              - listitem [ref=e76]:
+                - link "You must be signed in to change notification settings" [ref=e77] [cursor=pointer]:
+                  - /url: /login?return_to=%2Fafoim%2Feasy_cover
+                  - img [ref=e78]
+                  - text: Notifications
+              - listitem [ref=e80]:
+                - link "Fork 54" [ref=e81] [cursor=pointer]:
+                  - /url: /login?return_to=%2Fafoim%2Feasy_cover
+                  - img [ref=e82]
+                  - text: Fork
+                  - generic "54" [ref=e84]
+              - listitem [ref=e85]:
+                - link "You must be signed in to star a repository" [ref=e87] [cursor=pointer]:
+                  - /url: /login?return_to=%2Fafoim%2Feasy_cover
+                  - img [ref=e88]
+                  - text: Star
+                  - generic "76 users starred this repository" [ref=e90]: "76"
+        - navigation "Repository" [ref=e91]:
+          - list [ref=e92]:
+            - listitem [ref=e93]:
+              - link "Code" [ref=e94] [cursor=pointer]:
+                - /url: /afoim/easy_cover
+                - img [ref=e95]
+                - generic [ref=e97]: Code
+            - listitem [ref=e98]:
+              - link "Issues" [ref=e99] [cursor=pointer]:
+                - /url: /afoim/easy_cover/issues
+                - img [ref=e100]
+                - generic [ref=e103]: Issues
+            - listitem [ref=e104]:
+              - link "Pull requests" [ref=e105] [cursor=pointer]:
+                - /url: /afoim/easy_cover/pulls
+                - img [ref=e106]
+                - generic [ref=e108]: Pull requests
+            - listitem [ref=e109]:
+              - link "Actions" [ref=e110] [cursor=pointer]:
+                - /url: /afoim/easy_cover/actions
+                - img [ref=e111]
+                - generic [ref=e113]: Actions
+            - listitem [ref=e114]:
+              - link "Projects" [ref=e115] [cursor=pointer]:
+                - /url: /afoim/easy_cover/projects
+                - img [ref=e116]
+                - generic [ref=e118]: Projects
+            - listitem [ref=e119]:
+              - link "Security and quality" [ref=e120] [cursor=pointer]:
+                - /url: /afoim/easy_cover/security
+                - img [ref=e121]
+                - generic [ref=e123]: Security and quality
+            - listitem [ref=e124]:
+              - link "Insights" [ref=e125] [cursor=pointer]:
+                - /url: /afoim/easy_cover/pulse
+                - img [ref=e126]
+                - generic [ref=e128]: Insights
+      - generic [ref=e809]:
+        - generic [ref=e811]:
+          - generic [ref=e814]:
+            - generic [ref=e815]:
+              - generic [ref=e816]:
+                - heading "Collapse file tree" [level=2] [ref=e817]:
+                  - button "Collapse file tree" [expanded] [ref=e818] [cursor=pointer]:
+                    - img [ref=e819]
+                - heading "Files" [level=2] [ref=e822]
+              - generic [ref=e823]:
+                - button "main branch" [ref=e825] [cursor=pointer]:
+                  - generic [ref=e826]:
+                    - generic [ref=e828]:
+                      - img [ref=e830]
+                      - generic [ref=e833]: main
+                    - generic:
+                      - img
+                - button "Search this repository (forward slash)" [ref=e835] [cursor=pointer]:
+                  - img [ref=e836]
+            - generic [ref=e839]:
+              - img [ref=e841]
+              - combobox "Go to file" [ref=e843]
+            - navigation "File Tree Navigation" [ref=e849]:
+              - tree "Files" [ref=e851]:
+                - treeitem "app" [expanded] [level=1] [ref=e852]:
+                  - generic [ref=e853] [cursor=pointer]:
+                    - img [ref=e855]
+                    - generic [ref=e857]:
+                      - img [ref=e861]
+                      - generic [ref=e863]: app
+                  - group "app" [ref=e864]:
+                    - treeitem "globals.css" [level=2] [ref=e865]:
+                      - generic [ref=e870] [cursor=pointer]:
+                        - img [ref=e873]
+                        - generic [ref=e875]: globals.css
+                    - treeitem "layout.tsx" [level=2] [ref=e876]:
+                      - generic [ref=e881] [cursor=pointer]:
+                        - img [ref=e884]
+                        - generic [ref=e886]: layout.tsx
+                    - treeitem "page.tsx" [level=2] [ref=e887]:
+                      - generic [ref=e892] [cursor=pointer]:
+                        - img [ref=e895]
+                        - generic [ref=e897]: page.tsx
+                - treeitem "components" [level=1] [ref=e898]:
+                  - generic [ref=e899] [cursor=pointer]:
+                    - img [ref=e901]
+                    - generic [ref=e903]:
+                      - img [ref=e907]
+                      - generic [ref=e909]: components
+                - treeitem "lib" [level=1] [ref=e910]:
+                  - generic [ref=e911] [cursor=pointer]:
+                    - img [ref=e913]
+                    - generic [ref=e915]:
+                      - img [ref=e919]
+                      - generic [ref=e921]: lib
+                - treeitem "public" [level=1] [ref=e922]:
+                  - generic [ref=e923] [cursor=pointer]:
+                    - img [ref=e925]
+                    - generic [ref=e927]:
+                      - img [ref=e931]
+                      - generic [ref=e933]: public
+                - treeitem "store" [level=1] [ref=e934]:
+                  - generic [ref=e935] [cursor=pointer]:
+                    - img [ref=e937]
+                    - generic [ref=e939]:
+                      - img [ref=e943]
+                      - generic [ref=e945]: store
+                - treeitem ".gitignore" [level=1] [ref=e946]:
+                  - generic [ref=e948] [cursor=pointer]:
+                    - img [ref=e951]
+                    - generic [ref=e953]: .gitignore
+                - treeitem "LICENSE" [level=1] [ref=e954]:
+                  - generic [ref=e956] [cursor=pointer]:
+                    - img [ref=e959]
+                    - generic [ref=e961]: LICENSE
+                - treeitem "README.md" [level=1] [ref=e962]:
+                  - generic [ref=e964] [cursor=pointer]:
+                    - img [ref=e967]
+                    - generic [ref=e969]: README.md
+                - treeitem "components.json" [level=1] [ref=e970]:
+                  - generic [ref=e972] [cursor=pointer]:
+                    - img [ref=e975]
+                    - generic [ref=e977]: components.json
+                - treeitem "eslint.config.mjs" [level=1] [ref=e978]:
+                  - generic [ref=e980] [cursor=pointer]:
+                    - img [ref=e983]
+                    - generic [ref=e985]: eslint.config.mjs
+                - treeitem "inspect_font.py" [level=1] [ref=e986]:
+                  - generic [ref=e988] [cursor=pointer]:
+                    - img [ref=e991]
+                    - generic [ref=e993]: inspect_font.py
+                - treeitem "next.config.ts" [level=1] [ref=e994]:
+                  - generic [ref=e996] [cursor=pointer]:
+                    - img [ref=e999]
+                    - generic [ref=e1001]: next.config.ts
+                - treeitem "package-lock.json" [level=1] [ref=e1002]:
+                  - generic [ref=e1004] [cursor=pointer]:
+                    - img [ref=e1007]
+                    - generic [ref=e1009]: package-lock.json
+                - treeitem "package.json" [level=1] [ref=e1010]:
+                  - generic [ref=e1012] [cursor=pointer]:
+                    - img [ref=e1015]
+                    - generic [ref=e1017]: package.json
+                - treeitem "pnpm-lock.yaml" [level=1] [ref=e1018]:
+                  - generic [ref=e1020] [cursor=pointer]:
+                    - img [ref=e1023]
+                    - generic [ref=e1025]: pnpm-lock.yaml
+                - treeitem "postcss.config.mjs" [level=1] [ref=e1026]:
+                  - generic [ref=e1028] [cursor=pointer]:
+                    - img [ref=e1031]
+                    - generic [ref=e1033]: postcss.config.mjs
+                - treeitem "tsconfig.json" [level=1] [ref=e1034]:
+                  - generic [ref=e1036] [cursor=pointer]:
+                    - img [ref=e1039]
+                    - generic [ref=e1041]: tsconfig.json
+                - treeitem "wrangler.jsonc" [level=1] [ref=e1042]:
+                  - generic [ref=e1044] [cursor=pointer]:
+                    - img [ref=e1047]
+                    - generic [ref=e1049]: wrangler.jsonc
+          - slider "Draggable pane splitter" [ref=e1051]
+        - generic [ref=e1054]:
+          - generic [ref=e1058]:
+            - generic [ref=e1060]:
+              - navigation "Breadcrumbs" [ref=e1061]:
+                - heading "Breadcrumbs" [level=2] [ref=e1062]
+                - list [ref=e1063]:
+                  - listitem [ref=e1064]:
+                    - link "easy_cover" [ref=e1065] [cursor=pointer]:
+                      - /url: /afoim/easy_cover/tree/main
+              - generic [ref=e1066]:
+                - text: /
+                - heading "app" [level=1] [ref=e1067]
+                - text: /
+              - button "Copy path" [ref=e1068] [cursor=pointer]:
+                - img [ref=e1069]
+            - generic [ref=e1074]:
+              - heading "Directory actions" [level=2] [ref=e1075]
+              - heading "More options" [level=2] [ref=e1076]
+              - button "More options" [ref=e1077] [cursor=pointer]:
+                - img [ref=e1078]
+          - generic [ref=e1080]:
+            - generic [ref=e1082]:
+              - heading "Latest commit" [level=2] [ref=e1083]
+              - generic [ref=e1084]:
+                - generic [ref=e1086]:
+                  - link "afoim" [ref=e1087] [cursor=pointer]:
+                    - /url: /afoim
+                    - img "afoim" [ref=e1088]
+                  - link "commits by afoim" [ref=e1089] [cursor=pointer]:
+                    - /url: /afoim/easy_cover/commits?author=afoim
+                    - text: afoim
+                - generic [ref=e1090]:
+                  - 'link "feat(layout): 优化手机端适配，删除顶部 banner" [ref=e1093] [cursor=pointer]':
+                    - /url: /afoim/easy_cover/commit/8bb9a457b14143f0251c4aa9e3b22a4615757ac5
+                  - button "Open commit details" [ref=e1094] [cursor=pointer]:
+                    - img [ref=e1095]
+                  - button "success" [ref=e1097] [cursor=pointer]:
+                    - img [ref=e1098]
+              - generic [ref=e1100]:
+                - generic [ref=e1102]:
+                  - link "Commit 8bb9a45" [ref=e1103] [cursor=pointer]:
+                    - /url: /afoim/easy_cover/commit/8bb9a457b14143f0251c4aa9e3b22a4615757ac5
+                    - text: 8bb9a45
+                  - text: ·
+                  - generic "Apr 29, 2026, 6:07 PM GMT+8" [ref=e1104]: Apr 29, 2026last month
+                - generic [ref=e1105]:
+                  - heading "History" [level=2] [ref=e1106]
+                  - link "History" [ref=e1107] [cursor=pointer]:
+                    - /url: /afoim/easy_cover/commits/main/app
+                    - generic [ref=e1108]:
+                      - generic:
+                        - img
+                      - generic [ref=e1109]: History
+            - generic [ref=e1111]:
+              - heading "Folders and files" [level=2] [ref=e1112]
+              - table "Folders and files" [ref=e1113]:
+                - rowgroup [ref=e1114]:
+                  - row "Name Last commit message Last commit date" [ref=e1115]:
+                    - columnheader "Name" [ref=e1116]
+                    - columnheader "Last commit message" [ref=e1117]:
+                      - generic "Last commit message" [ref=e1118]
+                    - columnheader "Last commit date" [ref=e1119]:
+                      - generic "Last commit date" [ref=e1120]
+                - rowgroup [ref=e1121]:
+                  - row "parent directory Parent directory" [ref=e1122]:
+                    - cell "parent directory Parent directory" [ref=e1123]:
+                      - heading "parent directory" [level=3] [ref=e1124]
+                      - link "Parent directory" [ref=e1125] [cursor=pointer]:
+                        - /url: /afoim/easy_cover/tree/main
+                        - generic [ref=e1126]:
+                          - img [ref=e1127]
+                          - text: ..
+                  - 'row "globals.css, (File) feat(封面生成器): 添加字体选择和自定义上传功能 Jan 3, 20264 months ago" [ref=e1129]':
+                    - cell "globals.css, (File)" [ref=e1130]:
+                      - generic [ref=e1131]:
+                        - img [ref=e1132]
+                        - link "globals.css, (File)" [ref=e1137] [cursor=pointer]:
+                          - /url: /afoim/easy_cover/blob/main/app/globals.css
+                          - text: globals.css
+                    - 'cell "feat(封面生成器): 添加字体选择和自定义上传功能" [ref=e1138]':
+                      - 'link "feat(封面生成器): 添加字体选择和自定义上传功能" [ref=e1141] [cursor=pointer]':
+                        - /url: /afoim/easy_cover/commit/3f4775c99b6ac92e7207a3eb42b5bf4bb6b8e4be
+                    - cell "Jan 3, 20264 months ago" [ref=e1142]:
+                      - generic [ref=e1143]: Jan 3, 20264 months ago
+                  - 'row "layout.tsx, (File) feat(封面生成器): 添加字体选择和自定义上传功能 Jan 3, 20264 months ago" [ref=e1144]':
+                    - cell "layout.tsx, (File)" [ref=e1145]:
+                      - generic [ref=e1146]:
+                        - img [ref=e1147]
+                        - link "layout.tsx, (File)" [ref=e1152] [cursor=pointer]:
+                          - /url: /afoim/easy_cover/blob/main/app/layout.tsx
+                          - text: layout.tsx
+                    - 'cell "feat(封面生成器): 添加字体选择和自定义上传功能" [ref=e1153]':
+                      - 'link "feat(封面生成器): 添加字体选择和自定义上传功能" [ref=e1156] [cursor=pointer]':
+                        - /url: /afoim/easy_cover/commit/3f4775c99b6ac92e7207a3eb42b5bf4bb6b8e4be
+                    - cell "Jan 3, 20264 months ago" [ref=e1157]:
+                      - generic [ref=e1158]: Jan 3, 20264 months ago
+                  - 'row "page.tsx, (File) feat(layout): 优化手机端适配，删除顶部 banner Apr 29, 2026last month" [ref=e1159]':
+                    - cell "page.tsx, (File)" [ref=e1160]:
+                      - generic [ref=e1161]:
+                        - img [ref=e1162]
+                        - link "page.tsx, (File)" [ref=e1167] [cursor=pointer]:
+                          - /url: /afoim/easy_cover/blob/main/app/page.tsx
+                          - text: page.tsx
+                    - 'cell "feat(layout): 优化手机端适配，删除顶部 banner" [ref=e1168]':
+                      - 'link "feat(layout): 优化手机端适配，删除顶部 banner" [ref=e1171] [cursor=pointer]':
+                        - /url: /afoim/easy_cover/commit/8bb9a457b14143f0251c4aa9e3b22a4615757ac5
+                    - cell "Apr 29, 2026last month" [ref=e1172]:
+                      - generic [ref=e1173]: Apr 29, 2026last month
+  - alert [ref=e1174]

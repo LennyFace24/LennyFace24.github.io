@@ -2,7 +2,7 @@
 title: Vibe Coding实现了一个AI聊天小插件..
 published: 2026-04-04
 description: Vibe Coding实现了一个AI聊天小插件..
-tags: [wev dev]
+tags: [web dev]
 category: devLife
 draft: false
 ---

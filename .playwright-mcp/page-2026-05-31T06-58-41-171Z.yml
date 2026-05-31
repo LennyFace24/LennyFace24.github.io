@@ -1,0 +1,2644 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - link "Skip to content" [ref=e4] [cursor=pointer]:
+        - /url: "#start-of-content"
+      - banner [ref=e6]:
+        - heading "Navigation Menu" [level=2] [ref=e7]
+        - generic [ref=e8]:
+          - link "Homepage" [ref=e10] [cursor=pointer]:
+            - /url: /
+            - img [ref=e11]
+          - generic [ref=e13]:
+            - navigation "Global" [ref=e16]:
+              - list [ref=e17]:
+                - listitem [ref=e18]:
+                  - button "Platform" [ref=e20] [cursor=pointer]:
+                    - text: Platform
+                    - img [ref=e21]
+                - listitem [ref=e23]:
+                  - button "Solutions" [ref=e25] [cursor=pointer]:
+                    - text: Solutions
+                    - img [ref=e26]
+                - listitem [ref=e28]:
+                  - button "Resources" [ref=e30] [cursor=pointer]:
+                    - text: Resources
+                    - img [ref=e31]
+                - listitem [ref=e33]:
+                  - button "Open Source" [ref=e35] [cursor=pointer]:
+                    - text: Open Source
+                    - img [ref=e36]
+                - listitem [ref=e38]:
+                  - button "Enterprise" [ref=e40] [cursor=pointer]:
+                    - text: Enterprise
+                    - img [ref=e41]
+                - listitem [ref=e43]:
+                  - link "Pricing" [ref=e44] [cursor=pointer]:
+                    - /url: https://github.com/pricing
+                    - generic [ref=e45]: Pricing
+            - generic [ref=e46]:
+              - button "Search or jump to…" [ref=e49] [cursor=pointer]:
+                - img [ref=e51]
+              - link "Sign in" [ref=e54] [cursor=pointer]:
+                - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Fafoim%2Feasy_cover
+              - link "Sign up" [ref=e55] [cursor=pointer]:
+                - /url: /signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F%3Cuser-name%3E%2F%3Crepo-name%3E&source=header-repo&source_repo=afoim%2Feasy_cover
+              - button "Appearance settings" [ref=e58] [cursor=pointer]:
+                - img
+    - main [ref=e62]:
+      - generic [ref=e63]:
+        - generic [ref=e64]:
+          - generic [ref=e66]:
+            - img [ref=e67]
+            - link "afoim" [ref=e70] [cursor=pointer]:
+              - /url: /afoim
+            - generic [ref=e71]: /
+            - strong [ref=e72]:
+              - link "easy_cover" [ref=e73] [cursor=pointer]:
+                - /url: /afoim/easy_cover
+            - generic [ref=e74]: Public
+          - generic [ref=e75]:
+            - list:
+              - listitem [ref=e76]:
+                - link "You must be signed in to change notification settings" [ref=e77] [cursor=pointer]:
+                  - /url: /login?return_to=%2Fafoim%2Feasy_cover
+                  - img [ref=e78]
+                  - text: Notifications
+              - listitem [ref=e80]:
+                - link "Fork 54" [ref=e81] [cursor=pointer]:
+                  - /url: /login?return_to=%2Fafoim%2Feasy_cover
+                  - img [ref=e82]
+                  - text: Fork
+                  - generic "54" [ref=e84]
+              - listitem [ref=e85]:
+                - link "You must be signed in to star a repository" [ref=e87] [cursor=pointer]:
+                  - /url: /login?return_to=%2Fafoim%2Feasy_cover
+                  - img [ref=e88]
+                  - text: Star
+                  - generic "76 users starred this repository" [ref=e90]: "76"
+        - navigation "Repository" [ref=e91]:
+          - list [ref=e92]:
+            - listitem [ref=e93]:
+              - link "Code" [ref=e94] [cursor=pointer]:
+                - /url: /afoim/easy_cover
+                - img [ref=e95]
+                - generic [ref=e97]: Code
+            - listitem [ref=e98]:
+              - link "Issues" [ref=e99] [cursor=pointer]:
+                - /url: /afoim/easy_cover/issues
+                - img [ref=e100]
+                - generic [ref=e103]: Issues
+            - listitem [ref=e104]:
+              - link "Pull requests" [ref=e105] [cursor=pointer]:
+                - /url: /afoim/easy_cover/pulls
+                - img [ref=e106]
+                - generic [ref=e108]: Pull requests
+            - listitem [ref=e109]:
+              - link "Actions" [ref=e110] [cursor=pointer]:
+                - /url: /afoim/easy_cover/actions
+                - img [ref=e111]
+                - generic [ref=e113]: Actions
+            - listitem [ref=e114]:
+              - link "Projects" [ref=e115] [cursor=pointer]:
+                - /url: /afoim/easy_cover/projects
+                - img [ref=e116]
+                - generic [ref=e118]: Projects
+            - listitem [ref=e119]:
+              - link "Security and quality" [ref=e120] [cursor=pointer]:
+                - /url: /afoim/easy_cover/security
+                - img [ref=e121]
+                - generic [ref=e123]: Security and quality
+            - listitem [ref=e124]:
+              - link "Insights" [ref=e125] [cursor=pointer]:
+                - /url: /afoim/easy_cover/pulse
+                - img [ref=e126]
+                - generic [ref=e128]: Insights
+      - generic [ref=e809]:
+        - generic [ref=e811]:
+          - generic [ref=e814]:
+            - generic [ref=e815]:
+              - generic [ref=e816]:
+                - heading "Collapse file tree" [level=2] [ref=e817]:
+                  - button "Collapse file tree" [expanded] [ref=e818] [cursor=pointer]:
+                    - img [ref=e819]
+                - heading "Files" [level=2] [ref=e822]
+              - generic [ref=e823]:
+                - button "main branch" [ref=e825] [cursor=pointer]:
+                  - generic [ref=e826]:
+                    - generic [ref=e828]:
+                      - img [ref=e830]
+                      - generic [ref=e833]: main
+                    - generic:
+                      - img
+                - button "Search this repository (forward slash)" [ref=e835] [cursor=pointer]:
+                  - img [ref=e836]
+            - generic [ref=e839]:
+              - img [ref=e841]
+              - combobox "Go to file" [ref=e843]
+            - navigation "File Tree Navigation" [ref=e849]:
+              - tree "Files" [ref=e851]:
+                - treeitem "app" [expanded] [level=1] [ref=e852]:
+                  - generic [ref=e853] [cursor=pointer]:
+                    - img [ref=e855]
+                    - generic [ref=e857]:
+                      - img [ref=e861]
+                      - generic [ref=e863]: app
+                  - group "app" [ref=e864]:
+                    - treeitem "globals.css" [level=2] [ref=e865]:
+                      - generic [ref=e870] [cursor=pointer]:
+                        - img [ref=e873]
+                        - generic [ref=e875]: globals.css
+                    - treeitem "layout.tsx" [level=2] [ref=e876]:
+                      - generic [ref=e881] [cursor=pointer]:
+                        - img [ref=e884]
+                        - generic [ref=e886]: layout.tsx
+                    - treeitem "page.tsx" [level=2] [ref=e887]:
+                      - generic [ref=e892] [cursor=pointer]:
+                        - img [ref=e895]
+                        - generic [ref=e897]: page.tsx
+                - treeitem "components" [expanded] [level=1] [ref=e898]:
+                  - generic [ref=e899] [cursor=pointer]:
+                    - img [ref=e1302]
+                    - generic [ref=e903]:
+                      - img [ref=e1304]
+                      - generic [ref=e909]: components
+                  - group "components" [ref=e1306]:
+                    - treeitem "cover" [expanded] [level=2] [ref=e1307]:
+                      - generic [ref=e1308] [cursor=pointer]:
+                        - img [ref=e1441]
+                        - generic [ref=e1315]:
+                          - img [ref=e1443]
+                          - generic [ref=e1321]: cover
+                      - group "cover" [ref=e1445]:
+                        - treeitem "Canvas.tsx" [level=3] [ref=e1446]:
+                          - generic [ref=e1452] [cursor=pointer]:
+                            - img [ref=e1455]
+                            - generic [ref=e1457]: Canvas.tsx
+                        - treeitem "Controls.tsx" [level=3] [ref=e1458]:
+                          - generic [ref=e1464] [cursor=pointer]:
+                            - img [ref=e1467]
+                            - generic [ref=e1469]: Controls.tsx
+                        - treeitem "IconPicker.tsx" [level=3] [ref=e1470]:
+                          - generic [ref=e1476] [cursor=pointer]:
+                            - img [ref=e1479]
+                            - generic [ref=e1481]: IconPicker.tsx
+                    - treeitem "ui" [level=2] [ref=e1322]:
+                      - generic [ref=e1323] [cursor=pointer]:
+                        - img [ref=e1328]
+                        - generic [ref=e1330]:
+                          - img [ref=e1334]
+                          - generic [ref=e1336]: ui
+                - treeitem "lib" [level=1] [ref=e910]:
+                  - generic [ref=e911] [cursor=pointer]:
+                    - img [ref=e913]
+                    - generic [ref=e915]:
+                      - img [ref=e919]
+                      - generic [ref=e921]: lib
+                - treeitem "public" [level=1] [ref=e922]:
+                  - generic [ref=e923] [cursor=pointer]:
+                    - img [ref=e925]
+                    - generic [ref=e927]:
+                      - img [ref=e931]
+                      - generic [ref=e933]: public
+                - treeitem "store" [level=1] [ref=e934]:
+                  - generic [ref=e935] [cursor=pointer]:
+                    - img [ref=e937]
+                    - generic [ref=e939]:
+                      - img [ref=e943]
+                      - generic [ref=e945]: store
+                - treeitem ".gitignore" [level=1] [ref=e946]:
+                  - generic [ref=e948] [cursor=pointer]:
+                    - img [ref=e951]
+                    - generic [ref=e953]: .gitignore
+                - treeitem "LICENSE" [level=1] [ref=e954]:
+                  - generic [ref=e956] [cursor=pointer]:
+                    - img [ref=e959]
+                    - generic [ref=e961]: LICENSE
+                - treeitem "README.md" [level=1] [ref=e962]:
+                  - generic [ref=e964] [cursor=pointer]:
+                    - img [ref=e967]
+                    - generic [ref=e969]: README.md
+                - treeitem "components.json" [level=1] [ref=e970]:
+                  - generic [ref=e972] [cursor=pointer]:
+                    - img [ref=e975]
+                    - generic [ref=e977]: components.json
+                - treeitem "eslint.config.mjs" [level=1] [ref=e978]:
+                  - generic [ref=e980] [cursor=pointer]:
+                    - img [ref=e983]
+                    - generic [ref=e985]: eslint.config.mjs
+                - treeitem "inspect_font.py" [level=1] [ref=e986]:
+                  - generic [ref=e988] [cursor=pointer]:
+                    - img [ref=e991]
+                    - generic [ref=e993]: inspect_font.py
+                - treeitem "next.config.ts" [level=1] [ref=e994]:
+                  - generic [ref=e996] [cursor=pointer]:
+                    - img [ref=e999]
+                    - generic [ref=e1001]: next.config.ts
+                - treeitem "package-lock.json" [level=1] [ref=e1002]:
+                  - generic [ref=e1004] [cursor=pointer]:
+                    - img [ref=e1007]
+                    - generic [ref=e1009]: package-lock.json
+                - treeitem "package.json" [level=1] [ref=e1010]:
+                  - generic [ref=e1012] [cursor=pointer]:
+                    - img [ref=e1015]
+                    - generic [ref=e1017]: package.json
+                - treeitem "pnpm-lock.yaml" [level=1] [ref=e1018]:
+                  - generic [ref=e1020] [cursor=pointer]:
+                    - img [ref=e1023]
+                    - generic [ref=e1025]: pnpm-lock.yaml
+                - treeitem "postcss.config.mjs" [level=1] [ref=e1026]:
+                  - generic [ref=e1028] [cursor=pointer]:
+                    - img [ref=e1031]
+                    - generic [ref=e1033]: postcss.config.mjs
+                - treeitem "tsconfig.json" [level=1] [ref=e1034]:
+                  - generic [ref=e1036] [cursor=pointer]:
+                    - img [ref=e1039]
+                    - generic [ref=e1041]: tsconfig.json
+                - treeitem "wrangler.jsonc" [level=1] [ref=e1042]:
+                  - generic [ref=e1044] [cursor=pointer]:
+                    - img [ref=e1047]
+                    - generic [ref=e1049]: wrangler.jsonc
+          - slider "Draggable pane splitter" [ref=e1051]
+        - generic [ref=e1054]:
+          - generic [ref=e1534]:
+            - generic [ref=e1536]:
+              - navigation "Breadcrumbs" [ref=e1537]:
+                - heading "Breadcrumbs" [level=2] [ref=e1538]
+                - list [ref=e1539]:
+                  - listitem [ref=e1540]:
+                    - link "easy_cover" [ref=e1541] [cursor=pointer]:
+                      - /url: /afoim/easy_cover/tree/main
+                  - listitem [ref=e1542]:
+                    - text: /
+                    - link "components" [ref=e1543] [cursor=pointer]:
+                      - /url: /afoim/easy_cover/tree/main/components
+                  - listitem [ref=e1544]:
+                    - text: /
+                    - link "cover" [ref=e1545] [cursor=pointer]:
+                      - /url: /afoim/easy_cover/tree/main/components/cover
+              - generic [ref=e1546]:
+                - text: /
+                - heading "Canvas.tsx" [level=1] [ref=e1547]
+              - button "Copy path" [ref=e1548] [cursor=pointer]:
+                - img [ref=e1549]
+            - button "More file actions" [ref=e1555] [cursor=pointer]:
+              - img [ref=e1556]
+          - generic [ref=e1558]:
+            - generic [ref=e1560]:
+              - heading "Latest commit" [level=2] [ref=e1561]
+              - generic [ref=e1562]:
+                - generic [ref=e1564]:
+                  - link "afoim" [ref=e1565] [cursor=pointer]:
+                    - /url: /afoim
+                    - img "afoim" [ref=e1566]
+                  - link "commits by afoim" [ref=e1567] [cursor=pointer]:
+                    - /url: /afoim/easy_cover/commits?author=afoim
+                    - text: afoim
+                - generic [ref=e1568]:
+                  - 'link "feat(layout): 优化手机端适配，删除顶部 banner" [ref=e1571] [cursor=pointer]':
+                    - /url: /afoim/easy_cover/commit/8bb9a457b14143f0251c4aa9e3b22a4615757ac5
+                  - button "Open commit details" [ref=e1572] [cursor=pointer]:
+                    - img [ref=e1573]
+                  - button "success" [ref=e1575] [cursor=pointer]:
+                    - img [ref=e1576]
+              - generic [ref=e1578]:
+                - generic [ref=e1580]:
+                  - link "Commit 8bb9a45" [ref=e1581] [cursor=pointer]:
+                    - /url: /afoim/easy_cover/commit/8bb9a457b14143f0251c4aa9e3b22a4615757ac5
+                    - text: 8bb9a45
+                  - text: ·
+                  - generic "Apr 29, 2026, 6:07 PM GMT+8" [ref=e1582]: Apr 29, 2026last month
+                - generic [ref=e1583]:
+                  - heading "History" [level=2] [ref=e1584]
+                  - link "History" [ref=e1585] [cursor=pointer]:
+                    - /url: /afoim/easy_cover/commits/main/components/cover/Canvas.tsx
+                    - generic [ref=e1586]:
+                      - generic:
+                        - img
+                      - generic [ref=e1587]: History
+            - generic [ref=e1589]:
+              - generic [ref=e1591]:
+                - heading "File metadata and controls" [level=2] [ref=e1592]
+                - list "File view" [ref=e1594]:
+                  - listitem [ref=e1595]:
+                    - button "Code" [ref=e1596] [cursor=pointer]:
+                      - generic [ref=e1598]: Code
+                  - listitem [ref=e1599]:
+                    - button "Blame" [ref=e1600] [cursor=pointer]:
+                      - generic [ref=e1602]: Blame
+                - generic [ref=e1603]:
+                  - generic [ref=e1604]:
+                    - generic [ref=e1605]:
+                      - link "Raw" [ref=e1607] [cursor=pointer]:
+                        - /url: https://github.com/afoim/easy_cover/raw/refs/heads/main/components/cover/Canvas.tsx
+                        - generic [ref=e1609]: Raw
+                      - button "Copy raw file" [ref=e1611] [cursor=pointer]:
+                        - img [ref=e1612]
+                      - button "Download raw file" [ref=e1616] [cursor=pointer]:
+                        - img [ref=e1617]
+                    - generic [ref=e1620]:
+                      - button "You must be signed in to make or propose changes" [disabled] [ref=e1622]:
+                        - img [ref=e1623]
+                      - button "More edit options" [ref=e1626] [cursor=pointer]:
+                        - img [ref=e1627]
+                  - button "Open symbols panel" [ref=e1629] [cursor=pointer]:
+                    - img [ref=e1630]
+              - region "Canvas.tsx" [ref=e1633]:
+                - generic [ref=e1637]:
+                  - textbox "file content" [ref=e1642]: "'use client'; import React, { useRef, useState, useEffect, useMemo } from 'react'; import { useCoverStore, RATIOS } from '@/store/useCoverStore'; import { Icon } from '@iconify/react'; import { cn } from '@/lib/utils'; export default function Canvas() { const { selectedRatios, showRuler, text, icon, background, } = useCoverStore(); const containerRef = useRef<HTMLDivElement>(null); const [scale, setScale] = useState(1); // Calculate the bounding box required for all selected ratios const dimensions = useMemo(() => { const activeRatios = RATIOS.filter((r) => selectedRatios.includes(r.label)); if (activeRatios.length === 0) return { width: 1000, height: 1000 }; const maxWidth = Math.max(...activeRatios.map((r) => r.width)); const maxHeight = Math.max(...activeRatios.map((r) => r.height)); return { width: maxWidth, height: maxHeight }; }, [selectedRatios]); // Auto-scale to fit container useEffect(() => { const handleResize = () => { if (!containerRef.current) return; const parent = containerRef.current.parentElement; if (!parent) return; const isMobile = parent.clientWidth < 768; const padding = isMobile ? 16 : 80; const availableWidth = parent.clientWidth - padding; const availableHeight = parent.clientHeight - padding; const scaleX = availableWidth / dimensions.width; const scaleY = availableHeight / dimensions.height; setScale(Math.min(scaleX, scaleY) * 0.9); }; handleResize(); window.addEventListener('resize', handleResize); return () => window.removeEventListener('resize', handleResize); }, [dimensions]); // Helper to convert hex to rgba const hexToRgba = (hex: string, alpha: number) => { let r = 0, g = 0, b = 0; if (hex.length === 4) { r = parseInt(hex[1] + hex[1], 16); g = parseInt(hex[2] + hex[2], 16); b = parseInt(hex[3] + hex[3], 16); } else if (hex.length === 7) { r = parseInt(hex.slice(1, 3), 16); g = parseInt(hex.slice(3, 5), 16); b = parseInt(hex.slice(5, 7), 16); } return `rgba(${r}, ${g}, ${b}, ${alpha})`; }; // Helper to render the Icon with its container settings const renderIcon = () => { const bgColor = icon.bgShape !== 'none' ? hexToRgba(icon.bgColor, icon.bgOpacity) : 'transparent'; return ( <div className=\"flex items-center justify-center\" style={{ transform: `rotate(${icon.rotation}deg)`, filter: icon.shadow ? `drop-shadow(0 ${icon.shadowOffsetY}px ${icon.shadowBlur}px ${icon.shadowColor})` : 'none', backgroundColor: bgColor, backdropFilter: icon.bgBlur > 0 ? `blur(${icon.bgBlur}px)` : 'none', WebkitBackdropFilter: icon.bgBlur > 0 ? `blur(${icon.bgBlur}px)` : 'none', padding: icon.bgShape !== 'none' ? `${(icon.size * icon.padding) / 100}px` : 0, borderRadius: icon.bgShape === 'circle' ? '50%' : icon.bgShape === 'rounded-square' ? `${icon.radius / 2}%` : icon.bgShape === 'square' ? '0' : '0', }} > {icon.customIconUrl ? ( <img src={icon.customIconUrl} alt=\"Custom Icon\" className=\"w-full h-full object-contain\" style={{ width: `${icon.size}px`, height: `${icon.size}px`, borderRadius: `${icon.customIconRadius / 2}%`, }} /> ) : ( <Icon icon={icon.name} width={icon.size} height={icon.size} color={icon.color} /> )} </div> ); }; // Helper to render Text const renderText = (content: string, offsetX: number = 0, offsetY: number = 0, align: 'left' | 'center' | 'right' = 'center') => ( <div className=\"whitespace-pre leading-tight\" style={{ transform: `translate(${offsetX}px, ${offsetY}px) rotate(${text.rotation}deg)`, fontSize: `${text.fontSize}px`, color: text.color, fontWeight: text.fontWeight, fontFamily: text.font, textAlign: align, WebkitTextStroke: text.strokeWidth > 0 ? `${text.strokeWidth}px ${text.strokeColor}` : undefined, }} > {content} </div> ); // Layout: split text anchored to the canvas centerline. // Left half hosts left text, right half hosts right text; // per-side textAlign controls whether the inner text hugs the centerline. const renderAbsoluteIcon = () => icon.visible && (icon.placement === 'front' || icon.placement === 'behind') ? ( <div className=\"absolute top-1/2 left-1/2\" style={{ transform: `translate(calc(-50% + ${icon.x}px), calc(-50% + ${icon.y}px))`, zIndex: icon.placement === 'front' ? 20 : 5, }} > {renderIcon()} </div> ) : null; const renderInlineIcon = () => icon.visible ? ( <div className=\"flex-shrink-0\" style={{ transform: `translate(${icon.x}px, ${icon.y}px)` }} > {renderIcon()} </div> ) : null; const isInline = icon.visible && (icon.placement === 'left' || icon.placement === 'right'); const renderContent = () => ( <div className=\"absolute inset-0 pointer-events-none\"> {renderAbsoluteIcon()} {isInline ? ( <div className=\"absolute inset-0 flex items-center justify-center\" style={{ zIndex: 10 }}> {icon.placement === 'left' && renderInlineIcon()} <div className=\"flex items-center\"> <div style={{ justifyContent: text.leftAlign === 'left' ? 'flex-start' : text.leftAlign === 'right' ? 'flex-end' : 'center', display: 'flex', }} > {renderText(text.leftContent, text.leftOffsetX, text.leftOffsetY, text.leftAlign)} </div> <div style={{ justifyContent: text.rightAlign === 'left' ? 'flex-start' : text.rightAlign === 'right' ? 'flex-end' : 'center', display: 'flex', }} > {renderText(text.rightContent, text.rightOffsetX, text.rightOffsetY, text.rightAlign)} </div> </div> {icon.placement === 'right' && renderInlineIcon()} </div> ) : ( <> <div className=\"absolute top-1/2 -translate-y-1/2 flex items-center\" style={{ left: 0, width: '50%', zIndex: 10, justifyContent: text.leftAlign === 'left' ? 'flex-start' : text.leftAlign === 'right' ? 'flex-end' : 'center', }} > {renderText(text.leftContent, text.leftOffsetX, text.leftOffsetY, text.leftAlign)} </div> <div className=\"absolute top-1/2 -translate-y-1/2 flex items-center\" style={{ left: '50%', width: '50%', zIndex: 10, justifyContent: text.rightAlign === 'left' ? 'flex-start' : text.rightAlign === 'right' ? 'flex-end' : 'center', }} > {renderText(text.rightContent, text.rightOffsetX, text.rightOffsetY, text.rightAlign)} </div> </> )} </div> ); return ( <div className=\"bg-gray-100 dark:bg-gray-900 overflow-hidden relative w-full h-[25vh] md:h-full md:flex-1 min-w-0 shrink-0 md:shrink\"> {/* Container for scaling */} <div ref={containerRef} style={{ width: dimensions.width, height: dimensions.height, position: 'absolute', left: '50%', top: '50%', transform: `translate(-50%, -50%) scale(${scale})`, transformOrigin: 'center', }} className=\"transition-[width,height] duration-300\" > <div id=\"canvas-export-target\" className=\"w-full h-full relative overflow-hidden flex flex-col items-center justify-center\" > {/* Background Layer */} <div className=\"absolute inset-0\" style={{ backgroundColor: background.type === 'solid' ? background.color : '#ffffff', borderRadius: `${background.radius}px`, }} > {background.type === 'image' && background.imageUrl && ( <img src={background.imageUrl} alt=\"Background\" className=\"absolute inset-0 w-full h-full object-contain pointer-events-none\" style={{ filter: `blur(${background.blur}px)`, transform: `scale(${background.scale}) translate(${background.positionX - 50}%, ${background.positionY - 50}%) rotate(${background.rotation}deg)`, transformOrigin: 'center', }} /> )} </div> {/* Inner Shadow Layer */} {background.shadow && ( <div className=\"absolute inset-0 pointer-events-none z-0\" style={{ boxShadow: `inset 0 ${background.shadowOffsetY}px ${background.shadowBlur}px ${background.shadowColor}`, }} /> )} {/* Content Layer */} <div className=\"z-10 pointer-events-none\"> {renderContent()} </div> {/* Overlays / Guides Layer */} {selectedRatios.map((ratioLabel) => { const ratio = RATIOS.find((r) => r.label === ratioLabel); if (!ratio) return null; // Calculate position to center it const left = (dimensions.width - ratio.width) / 2; const top = (dimensions.height - ratio.height) / 2; return ( <div key={ratioLabel} className=\"absolute border-2 border-dashed border-blue-500/50 pointer-events-none flex items-start justify-start export-exclude\" style={{ width: ratio.width, height: ratio.height, left: left, top: top, zIndex: 50 }} > <span className=\"bg-blue-500 text-white text-xs px-1 opacity-70\">{ratioLabel}</span> </div> ); })} {/* Ruler Overlay */} {showRuler && ( <div className=\"absolute inset-0 pointer-events-none opacity-30 z-40 export-exclude\" style={{ backgroundImage: 'linear-gradient(90deg, #000 1px, transparent 1px), linear-gradient(0deg, #000 1px, transparent 1px)', backgroundSize: '100px 100px' }} /> )} </div> </div> </div> ); }"
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic [ref=e1643]:
+                          - generic [ref=e1644] [cursor=pointer]: "1"
+                          - generic [ref=e1645] [cursor=pointer]: "2"
+                          - generic [ref=e1646] [cursor=pointer]: "3"
+                          - generic [ref=e1647] [cursor=pointer]: "4"
+                          - generic [ref=e1648] [cursor=pointer]: "5"
+                          - generic [ref=e1649] [cursor=pointer]: "6"
+                          - generic [ref=e1650] [cursor=pointer]: "7"
+                          - generic [ref=e1651] [cursor=pointer]:
+                            - text: "8"
+                            - button [ref=e1652]:
+                              - img [ref=e1653]
+                          - generic [ref=e1655] [cursor=pointer]: "9"
+                          - generic [ref=e1656] [cursor=pointer]: "10"
+                          - generic [ref=e1657] [cursor=pointer]: "11"
+                          - generic [ref=e1658] [cursor=pointer]: "12"
+                          - generic [ref=e1659] [cursor=pointer]: "13"
+                          - generic [ref=e1660] [cursor=pointer]: "14"
+                          - generic [ref=e1661] [cursor=pointer]: "15"
+                          - generic [ref=e1662] [cursor=pointer]: "16"
+                          - generic [ref=e1663] [cursor=pointer]: "17"
+                          - generic [ref=e1664] [cursor=pointer]: "18"
+                          - generic [ref=e1665] [cursor=pointer]: "19"
+                          - generic [ref=e1666] [cursor=pointer]: "20"
+                          - generic [ref=e1667] [cursor=pointer]: "21"
+                          - generic [ref=e1668] [cursor=pointer]: "22"
+                          - generic [ref=e1669] [cursor=pointer]: "23"
+                          - generic [ref=e1670] [cursor=pointer]: "24"
+                          - generic [ref=e1671] [cursor=pointer]: "25"
+                          - generic [ref=e1672] [cursor=pointer]: "26"
+                          - generic [ref=e1673] [cursor=pointer]: "27"
+                          - generic [ref=e1674] [cursor=pointer]: "28"
+                          - generic [ref=e1675] [cursor=pointer]: "29"
+                          - generic [ref=e1676] [cursor=pointer]: "30"
+                          - generic [ref=e1677] [cursor=pointer]: "31"
+                          - generic [ref=e1678] [cursor=pointer]: "32"
+                          - generic [ref=e1679] [cursor=pointer]:
+                            - text: "33"
+                            - button [ref=e1680]:
+                              - img [ref=e1681]
+                          - generic [ref=e1683] [cursor=pointer]: "34"
+                          - generic [ref=e1684] [cursor=pointer]: "35"
+                          - generic [ref=e1685] [cursor=pointer]: "36"
+                          - generic [ref=e1686] [cursor=pointer]: "37"
+                          - generic [ref=e1687] [cursor=pointer]: "38"
+                          - generic [ref=e1688] [cursor=pointer]: "39"
+                          - generic [ref=e1689] [cursor=pointer]: "40"
+                          - generic [ref=e1690] [cursor=pointer]: "41"
+                          - generic [ref=e1691] [cursor=pointer]: "42"
+                          - generic [ref=e1692] [cursor=pointer]: "43"
+                          - generic [ref=e1693] [cursor=pointer]: "44"
+                          - generic [ref=e1694] [cursor=pointer]: "45"
+                          - generic [ref=e1695] [cursor=pointer]: "46"
+                          - generic [ref=e1696] [cursor=pointer]: "47"
+                          - generic [ref=e1697] [cursor=pointer]: "48"
+                          - generic [ref=e1698] [cursor=pointer]: "49"
+                          - generic [ref=e1699] [cursor=pointer]: "50"
+                          - generic [ref=e1700] [cursor=pointer]: "51"
+                          - generic [ref=e1701] [cursor=pointer]: "52"
+                          - generic [ref=e1702] [cursor=pointer]: "53"
+                          - generic [ref=e1703] [cursor=pointer]:
+                            - text: "54"
+                            - button [ref=e1704]:
+                              - img [ref=e1705]
+                          - generic [ref=e1707] [cursor=pointer]: "55"
+                          - generic [ref=e1708] [cursor=pointer]: "56"
+                          - generic [ref=e1709] [cursor=pointer]: "57"
+                          - generic [ref=e1710] [cursor=pointer]: "58"
+                          - generic [ref=e1711] [cursor=pointer]: "59"
+                          - generic [ref=e1712] [cursor=pointer]: "60"
+                          - generic [ref=e1713] [cursor=pointer]: "61"
+                          - generic [ref=e1714] [cursor=pointer]: "62"
+                          - generic [ref=e1715] [cursor=pointer]: "63"
+                          - generic [ref=e1716] [cursor=pointer]: "64"
+                          - generic [ref=e1717] [cursor=pointer]: "65"
+                          - generic [ref=e1718] [cursor=pointer]: "66"
+                          - generic [ref=e1719] [cursor=pointer]: "67"
+                          - generic [ref=e1720] [cursor=pointer]: "68"
+                          - generic [ref=e1721] [cursor=pointer]:
+                            - text: "69"
+                            - button [ref=e1722]:
+                              - img [ref=e1723]
+                          - generic [ref=e1725] [cursor=pointer]: "70"
+                          - generic [ref=e1726] [cursor=pointer]: "71"
+                          - generic [ref=e1727] [cursor=pointer]: "72"
+                          - generic [ref=e1728] [cursor=pointer]: "73"
+                          - generic [ref=e1729] [cursor=pointer]: "74"
+                          - generic [ref=e1730] [cursor=pointer]: "75"
+                          - generic [ref=e1731] [cursor=pointer]: "76"
+                          - generic [ref=e1732] [cursor=pointer]: "77"
+                          - generic [ref=e1733] [cursor=pointer]: "78"
+                          - generic [ref=e1734] [cursor=pointer]: "79"
+                          - generic [ref=e1735] [cursor=pointer]: "80"
+                          - generic [ref=e1736] [cursor=pointer]: "81"
+                          - generic [ref=e1737] [cursor=pointer]: "82"
+                          - generic [ref=e1738] [cursor=pointer]: "83"
+                          - generic [ref=e1739] [cursor=pointer]: "84"
+                          - generic [ref=e1740] [cursor=pointer]: "85"
+                          - generic [ref=e1741] [cursor=pointer]: "86"
+                          - generic [ref=e1742] [cursor=pointer]: "87"
+                          - generic [ref=e1743] [cursor=pointer]: "88"
+                          - generic [ref=e1744] [cursor=pointer]: "89"
+                          - generic [ref=e1745] [cursor=pointer]: "90"
+                          - generic [ref=e1746] [cursor=pointer]: "91"
+                          - generic [ref=e1747] [cursor=pointer]: "92"
+                          - generic [ref=e1748] [cursor=pointer]: "93"
+                          - generic [ref=e1749] [cursor=pointer]: "94"
+                          - generic [ref=e1750] [cursor=pointer]: "95"
+                          - generic [ref=e1751] [cursor=pointer]: "96"
+                          - generic [ref=e1752] [cursor=pointer]: "97"
+                          - generic [ref=e1753] [cursor=pointer]: "98"
+                          - generic [ref=e1754] [cursor=pointer]: "99"
+                          - generic [ref=e1755] [cursor=pointer]: "100"
+                          - generic [ref=e1756] [cursor=pointer]: "101"
+                          - generic [ref=e1757] [cursor=pointer]: "102"
+                          - generic [ref=e1758] [cursor=pointer]: "103"
+                          - generic [ref=e1759] [cursor=pointer]: "104"
+                          - generic [ref=e1760] [cursor=pointer]: "105"
+                          - generic [ref=e1761] [cursor=pointer]:
+                            - text: "106"
+                            - button [ref=e1762]:
+                              - img [ref=e1763]
+                          - generic [ref=e1765] [cursor=pointer]: "107"
+                          - generic [ref=e1766] [cursor=pointer]: "108"
+                          - generic [ref=e1767] [cursor=pointer]: "109"
+                          - generic [ref=e1768] [cursor=pointer]: "110"
+                          - generic [ref=e1769] [cursor=pointer]: "111"
+                          - generic [ref=e1770] [cursor=pointer]: "112"
+                          - generic [ref=e1771] [cursor=pointer]: "113"
+                          - generic [ref=e1772] [cursor=pointer]: "114"
+                          - generic [ref=e1773] [cursor=pointer]: "115"
+                          - generic [ref=e1774] [cursor=pointer]: "116"
+                          - generic [ref=e1775] [cursor=pointer]: "117"
+                          - generic [ref=e1776] [cursor=pointer]: "118"
+                          - generic [ref=e1777] [cursor=pointer]: "119"
+                          - generic [ref=e1778] [cursor=pointer]: "120"
+                          - generic [ref=e1779] [cursor=pointer]: "121"
+                          - generic [ref=e1780] [cursor=pointer]: "122"
+                          - generic [ref=e1781] [cursor=pointer]: "123"
+                          - generic [ref=e1782] [cursor=pointer]: "124"
+                          - generic [ref=e1783] [cursor=pointer]: "125"
+                          - generic [ref=e1784] [cursor=pointer]:
+                            - text: "126"
+                            - button [ref=e1785]:
+                              - img [ref=e1786]
+                          - generic [ref=e1788] [cursor=pointer]: "127"
+                          - generic [ref=e1789] [cursor=pointer]: "128"
+                          - generic [ref=e1790] [cursor=pointer]: "129"
+                          - generic [ref=e1791] [cursor=pointer]: "130"
+                          - generic [ref=e1792] [cursor=pointer]: "131"
+                          - generic [ref=e1793] [cursor=pointer]: "132"
+                          - generic [ref=e1794] [cursor=pointer]: "133"
+                          - generic [ref=e1795] [cursor=pointer]: "134"
+                          - generic [ref=e1796] [cursor=pointer]: "135"
+                          - generic [ref=e1797] [cursor=pointer]: "136"
+                          - generic [ref=e1798] [cursor=pointer]: "137"
+                          - generic [ref=e1799] [cursor=pointer]:
+                            - text: "138"
+                            - button [ref=e1800]:
+                              - img [ref=e1801]
+                          - generic [ref=e1803] [cursor=pointer]: "139"
+                          - generic [ref=e1804] [cursor=pointer]: "140"
+                          - generic [ref=e1805] [cursor=pointer]: "141"
+                          - generic [ref=e1806] [cursor=pointer]: "142"
+                          - generic [ref=e1807] [cursor=pointer]: "143"
+                          - generic [ref=e1808] [cursor=pointer]: "144"
+                          - generic [ref=e1809] [cursor=pointer]: "145"
+                          - generic [ref=e1810] [cursor=pointer]: "146"
+                          - generic [ref=e1811] [cursor=pointer]: "231"
+                          - generic [ref=e1812] [cursor=pointer]: "232"
+                          - generic [ref=e1813] [cursor=pointer]: "233"
+                          - generic [ref=e1814] [cursor=pointer]: "234"
+                          - generic [ref=e1815] [cursor=pointer]: "235"
+                          - generic [ref=e1816] [cursor=pointer]: "236"
+                          - generic [ref=e1817] [cursor=pointer]: "237"
+                          - generic [ref=e1818] [cursor=pointer]: "238"
+                          - generic [ref=e1819] [cursor=pointer]: "239"
+                          - generic [ref=e1820] [cursor=pointer]: "240"
+                          - generic [ref=e1821] [cursor=pointer]: "241"
+                          - generic [ref=e1822] [cursor=pointer]: "242"
+                          - generic [ref=e1823] [cursor=pointer]: "243"
+                          - generic [ref=e1824] [cursor=pointer]: "244"
+                          - generic [ref=e1825] [cursor=pointer]: "245"
+                          - generic [ref=e1826] [cursor=pointer]: "246"
+                          - generic [ref=e1827] [cursor=pointer]: "247"
+                          - generic [ref=e1828] [cursor=pointer]: "248"
+                          - generic [ref=e1829] [cursor=pointer]: "249"
+                          - generic [ref=e1830] [cursor=pointer]: "250"
+                          - generic [ref=e1831] [cursor=pointer]: "251"
+                          - generic [ref=e1832] [cursor=pointer]: "252"
+                          - generic [ref=e1833] [cursor=pointer]: "253"
+                          - generic [ref=e1834] [cursor=pointer]: "254"
+                          - generic [ref=e1835] [cursor=pointer]: "255"
+                          - generic [ref=e1836] [cursor=pointer]: "256"
+                          - generic [ref=e1837] [cursor=pointer]: "257"
+                          - generic [ref=e1838] [cursor=pointer]: "258"
+                          - generic [ref=e1839] [cursor=pointer]: "259"
+                          - generic [ref=e1840] [cursor=pointer]: "260"
+                          - generic [ref=e1841] [cursor=pointer]: "261"
+                          - generic [ref=e1842] [cursor=pointer]: "262"
+                          - generic [ref=e1843] [cursor=pointer]: "263"
+                          - generic [ref=e1844] [cursor=pointer]: "264"
+                          - generic [ref=e1845] [cursor=pointer]: "265"
+                          - generic [ref=e1846] [cursor=pointer]: "266"
+                          - generic [ref=e1847] [cursor=pointer]: "267"
+                          - generic [ref=e1848] [cursor=pointer]: "268"
+                          - generic [ref=e1849] [cursor=pointer]: "269"
+                          - generic [ref=e1850] [cursor=pointer]: "270"
+                          - generic [ref=e1851] [cursor=pointer]: "271"
+                          - generic [ref=e1852] [cursor=pointer]: "272"
+                          - generic [ref=e1853] [cursor=pointer]: "273"
+                          - generic [ref=e1854] [cursor=pointer]: "274"
+                          - generic [ref=e1855] [cursor=pointer]: "275"
+                          - generic [ref=e1856] [cursor=pointer]: "276"
+                          - generic [ref=e1857] [cursor=pointer]: "277"
+                          - generic [ref=e1858] [cursor=pointer]: "278"
+                          - generic [ref=e1859] [cursor=pointer]: "279"
+                          - generic [ref=e1860] [cursor=pointer]: "280"
+                          - generic [ref=e1861] [cursor=pointer]: "281"
+                          - generic [ref=e1862] [cursor=pointer]: "282"
+                          - generic [ref=e1863] [cursor=pointer]: "283"
+                          - generic [ref=e1864] [cursor=pointer]: "284"
+                          - generic [ref=e1865] [cursor=pointer]: "285"
+                          - generic [ref=e1866] [cursor=pointer]: "286"
+                          - generic [ref=e1867] [cursor=pointer]: "287"
+                          - generic [ref=e1868] [cursor=pointer]: "288"
+                          - generic [ref=e1869] [cursor=pointer]: "289"
+                          - generic [ref=e1870] [cursor=pointer]: "290"
+                          - generic [ref=e1871] [cursor=pointer]: "291"
+                          - generic [ref=e1872] [cursor=pointer]: "292"
+                          - generic [ref=e1873] [cursor=pointer]: "293"
+                          - generic [ref=e1874] [cursor=pointer]: "294"
+                          - generic [ref=e1875] [cursor=pointer]: "295"
+                          - generic [ref=e1876] [cursor=pointer]: "296"
+                          - generic [ref=e1877] [cursor=pointer]: "297"
+                          - generic [ref=e1878] [cursor=pointer]: "298"
+                          - generic [ref=e1879] [cursor=pointer]: "299"
+                          - generic [ref=e1880] [cursor=pointer]: "300"
+                          - generic [ref=e1881] [cursor=pointer]: "301"
+                          - generic [ref=e1882] [cursor=pointer]: "302"
+                          - generic [ref=e1883] [cursor=pointer]: "303"
+                          - generic [ref=e1884] [cursor=pointer]: "304"
+                        - generic:
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: "'use client'"
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: import
+                                - generic: React
+                                - generic: ","
+                                - generic: "{"
+                                - generic: useRef
+                                - generic: ","
+                                - generic: useState
+                                - generic: ","
+                                - generic: useEffect
+                                - generic: ","
+                                - generic: useMemo
+                                - generic: "}"
+                                - generic: from
+                                - generic: "'react'"
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: import
+                                - generic: "{"
+                                - generic: useCoverStore
+                                - generic: ","
+                                - generic: RATIOS
+                                - generic: "}"
+                                - generic: from
+                                - generic: "'@/store/useCoverStore'"
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: import
+                                - generic: "{"
+                                - generic: Icon
+                                - generic: "}"
+                                - generic: from
+                                - generic: "'@iconify/react'"
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: import
+                                - generic: "{"
+                                - generic: cn
+                                - generic: "}"
+                                - generic: from
+                                - generic: "'@/lib/utils'"
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: export
+                                - generic: default
+                                - generic: function
+                                - generic: Canvas
+                                - generic: (
+                                - generic: )
+                                - generic: "{"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: const
+                                - generic: "{"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - text: selectedRatios
+                                - generic: ","
+                          - generic:
+                            - generic:
+                              - generic:
+                                - text: showRuler
+                                - generic: ","
+                          - generic:
+                            - generic:
+                              - generic:
+                                - text: text
+                                - generic: ","
+                          - generic:
+                            - generic:
+                              - generic:
+                                - text: icon
+                                - generic: ","
+                          - generic:
+                            - generic:
+                              - generic:
+                                - text: background
+                                - generic: ","
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: "}"
+                                - generic: =
+                                - generic: useCoverStore
+                                - generic: (
+                                - generic: )
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: const
+                                - generic: containerRef
+                                - generic: =
+                                - generic: useRef
+                                - generic: <
+                                - generic: HTMLDivElement
+                                - generic: ">"
+                                - generic: (
+                                - generic: "null"
+                                - generic: )
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: const
+                                - generic: "["
+                                - generic: scale
+                                - generic: ","
+                                - generic: setScale
+                                - generic: "]"
+                                - generic: =
+                                - generic: useState
+                                - generic: (
+                                - generic: "1"
+                                - generic: )
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: // Calculate the bounding box required for all selected ratios
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: const
+                                - generic: dimensions
+                                - generic: =
+                                - generic: useMemo
+                                - generic: (
+                                - generic: (
+                                - generic: )
+                                - generic: =>
+                                - generic: "{"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: const
+                                - generic: activeRatios
+                                - generic: =
+                                - generic: RATIOS
+                                - generic: .
+                                - generic: filter
+                                - generic: (
+                                - generic: (
+                                - generic: r
+                                - generic: )
+                                - generic: =>
+                                - generic: selectedRatios
+                                - generic: .
+                                - generic: includes
+                                - generic: (
+                                - generic: r
+                                - generic: .
+                                - generic: label
+                                - generic: )
+                                - generic: )
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: if
+                                - generic: (
+                                - generic: activeRatios
+                                - generic: .
+                                - generic: length
+                                - generic: ===
+                                - generic: "0"
+                                - generic: )
+                                - generic: return
+                                - generic: "{"
+                                - generic: width
+                                - text: ":"
+                                - generic: "1000"
+                                - generic: ","
+                                - generic: height
+                                - text: ":"
+                                - generic: "1000"
+                                - generic: "}"
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: const
+                                - generic: maxWidth
+                                - generic: =
+                                - generic: Math
+                                - generic: .
+                                - generic: max
+                                - generic: (
+                                - text: ...
+                                - generic: activeRatios
+                                - generic: .
+                                - generic: map
+                                - generic: (
+                                - generic: (
+                                - generic: r
+                                - generic: )
+                                - generic: =>
+                                - generic: r
+                                - generic: .
+                                - generic: width
+                                - generic: )
+                                - generic: )
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: const
+                                - generic: maxHeight
+                                - generic: =
+                                - generic: Math
+                                - generic: .
+                                - generic: max
+                                - generic: (
+                                - text: ...
+                                - generic: activeRatios
+                                - generic: .
+                                - generic: map
+                                - generic: (
+                                - generic: (
+                                - generic: r
+                                - generic: )
+                                - generic: =>
+                                - generic: r
+                                - generic: .
+                                - generic: height
+                                - generic: )
+                                - generic: )
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: return
+                                - generic: "{"
+                                - generic: width
+                                - text: ":"
+                                - generic: maxWidth
+                                - generic: ","
+                                - generic: height
+                                - text: ":"
+                                - generic: maxHeight
+                                - generic: "}"
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: "}"
+                                - generic: ","
+                                - generic: "["
+                                - generic: selectedRatios
+                                - generic: "]"
+                                - generic: )
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: // Auto-scale to fit container
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: useEffect
+                                - generic: (
+                                - generic: (
+                                - generic: )
+                                - generic: =>
+                                - generic: "{"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: const
+                                - generic: handleResize
+                                - generic: =
+                                - generic: (
+                                - generic: )
+                                - generic: =>
+                                - generic: "{"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: if
+                                - generic: (
+                                - generic: "!"
+                                - generic: containerRef
+                                - generic: .
+                                - generic: current
+                                - generic: )
+                                - generic: return
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: const
+                                - generic: parent
+                                - generic: =
+                                - generic: containerRef
+                                - generic: .
+                                - generic: current
+                                - generic: .
+                                - generic: parentElement
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: if
+                                - generic: (
+                                - generic: "!"
+                                - generic: parent
+                                - generic: )
+                                - generic: return
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: const
+                                - generic: isMobile
+                                - generic: =
+                                - generic: parent
+                                - generic: .
+                                - generic: clientWidth
+                                - generic: <
+                                - generic: "768"
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: const
+                                - generic: padding
+                                - generic: =
+                                - generic: isMobile
+                                - text: "?"
+                                - generic: "16"
+                                - text: ":"
+                                - generic: "80"
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: const
+                                - generic: availableWidth
+                                - generic: =
+                                - generic: parent
+                                - generic: .
+                                - generic: clientWidth
+                                - generic: "-"
+                                - generic: padding
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: const
+                                - generic: availableHeight
+                                - generic: =
+                                - generic: parent
+                                - generic: .
+                                - generic: clientHeight
+                                - generic: "-"
+                                - generic: padding
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: const
+                                - generic: scaleX
+                                - generic: =
+                                - generic: availableWidth
+                                - generic: /
+                                - generic: dimensions
+                                - generic: .
+                                - generic: width
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: const
+                                - generic: scaleY
+                                - generic: =
+                                - generic: availableHeight
+                                - generic: /
+                                - generic: dimensions
+                                - generic: .
+                                - generic: height
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: setScale
+                                - generic: (
+                                - generic: Math
+                                - generic: .
+                                - generic: min
+                                - generic: (
+                                - generic: scaleX
+                                - generic: ","
+                                - generic: scaleY
+                                - generic: )
+                                - generic: "*"
+                                - generic: "0.9"
+                                - generic: )
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: "}"
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: handleResize
+                                - generic: (
+                                - generic: )
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: window
+                                - generic: .
+                                - generic: addEventListener
+                                - generic: (
+                                - generic: "'resize'"
+                                - generic: ","
+                                - generic: handleResize
+                                - generic: )
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: return
+                                - generic: (
+                                - generic: )
+                                - generic: =>
+                                - generic: window
+                                - generic: .
+                                - generic: removeEventListener
+                                - generic: (
+                                - generic: "'resize'"
+                                - generic: ","
+                                - generic: handleResize
+                                - generic: )
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: "}"
+                                - generic: ","
+                                - generic: "["
+                                - generic: dimensions
+                                - generic: "]"
+                                - generic: )
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: // Helper to convert hex to rgba
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: const
+                                - generic: hexToRgba
+                                - generic: =
+                                - generic: (
+                                - generic: hex
+                                - text: ":"
+                                - generic: string
+                                - generic: ","
+                                - generic: alpha
+                                - text: ":"
+                                - generic: number
+                                - generic: )
+                                - generic: =>
+                                - generic: "{"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: let
+                                - generic: r
+                                - generic: =
+                                - generic: "0"
+                                - generic: ","
+                                - generic: g
+                                - generic: =
+                                - generic: "0"
+                                - generic: ","
+                                - generic: b
+                                - generic: =
+                                - generic: "0"
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: if
+                                - generic: (
+                                - generic: hex
+                                - generic: .
+                                - generic: length
+                                - generic: ===
+                                - generic: "4"
+                                - generic: )
+                                - generic: "{"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: r
+                                - generic: =
+                                - generic: parseInt
+                                - generic: (
+                                - generic: hex
+                                - generic: "["
+                                - generic: "1"
+                                - generic: "]"
+                                - generic: +
+                                - generic: hex
+                                - generic: "["
+                                - generic: "1"
+                                - generic: "]"
+                                - generic: ","
+                                - generic: "16"
+                                - generic: )
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: g
+                                - generic: =
+                                - generic: parseInt
+                                - generic: (
+                                - generic: hex
+                                - generic: "["
+                                - generic: "2"
+                                - generic: "]"
+                                - generic: +
+                                - generic: hex
+                                - generic: "["
+                                - generic: "2"
+                                - generic: "]"
+                                - generic: ","
+                                - generic: "16"
+                                - generic: )
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: b
+                                - generic: =
+                                - generic: parseInt
+                                - generic: (
+                                - generic: hex
+                                - generic: "["
+                                - generic: "3"
+                                - generic: "]"
+                                - generic: +
+                                - generic: hex
+                                - generic: "["
+                                - generic: "3"
+                                - generic: "]"
+                                - generic: ","
+                                - generic: "16"
+                                - generic: )
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: "}"
+                                - generic: else
+                                - generic: if
+                                - generic: (
+                                - generic: hex
+                                - generic: .
+                                - generic: length
+                                - generic: ===
+                                - generic: "7"
+                                - generic: )
+                                - generic: "{"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: r
+                                - generic: =
+                                - generic: parseInt
+                                - generic: (
+                                - generic: hex
+                                - generic: .
+                                - generic: slice
+                                - generic: (
+                                - generic: "1"
+                                - generic: ","
+                                - generic: "3"
+                                - generic: )
+                                - generic: ","
+                                - generic: "16"
+                                - generic: )
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: g
+                                - generic: =
+                                - generic: parseInt
+                                - generic: (
+                                - generic: hex
+                                - generic: .
+                                - generic: slice
+                                - generic: (
+                                - generic: "3"
+                                - generic: ","
+                                - generic: "5"
+                                - generic: )
+                                - generic: ","
+                                - generic: "16"
+                                - generic: )
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: b
+                                - generic: =
+                                - generic: parseInt
+                                - generic: (
+                                - generic: hex
+                                - generic: .
+                                - generic: slice
+                                - generic: (
+                                - generic: "5"
+                                - generic: ","
+                                - generic: "7"
+                                - generic: )
+                                - generic: ","
+                                - generic: "16"
+                                - generic: )
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: "}"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: return
+                                - generic:
+                                  - text: "`rgba("
+                                  - generic:
+                                    - generic: "${"
+                                    - generic: r
+                                    - generic: "}"
+                                  - text: ","
+                                  - generic:
+                                    - generic: "${"
+                                    - generic: g
+                                    - generic: "}"
+                                  - text: ","
+                                  - generic:
+                                    - generic: "${"
+                                    - generic: b
+                                    - generic: "}"
+                                  - text: ","
+                                  - generic:
+                                    - generic: "${"
+                                    - generic: alpha
+                                    - generic: "}"
+                                  - text: ")`"
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: "}"
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: // Helper to render the Icon with its container settings
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: const
+                                - generic: renderIcon
+                                - generic: =
+                                - generic: (
+                                - generic: )
+                                - generic: =>
+                                - generic: "{"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: const
+                                - generic: bgColor
+                                - generic: =
+                                - generic: icon
+                                - generic: .
+                                - generic: bgShape
+                                - generic: "!=="
+                                - generic: "'none'"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - text: "?"
+                                - generic: hexToRgba
+                                - generic: (
+                                - generic: icon
+                                - generic: .
+                                - generic: bgColor
+                                - generic: ","
+                                - generic: icon
+                                - generic: .
+                                - generic: bgOpacity
+                                - generic: )
+                          - generic:
+                            - generic:
+                              - generic:
+                                - text: ":"
+                                - generic: "'transparent'"
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: return
+                                - generic: (
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: <
+                                - generic: div
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: className
+                                - generic: =
+                                - generic: "\"flex items-center justify-center\""
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: style
+                                - generic: =
+                                - generic: "{"
+                                - generic: "{"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: transform
+                                - text: ":"
+                                - generic:
+                                  - text: "`rotate("
+                                  - generic:
+                                    - generic: "${"
+                                    - generic: icon
+                                    - generic: .
+                                    - generic: rotation
+                                    - generic: "}"
+                                  - text: "deg)`"
+                                - generic: ","
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: filter
+                                - text: ":"
+                                - generic: icon
+                                - generic: .
+                                - generic: shadow
+                                - text: "?"
+                                - generic:
+                                  - text: "`drop-shadow(0"
+                                  - generic:
+                                    - generic: "${"
+                                    - generic: icon
+                                    - generic: .
+                                    - generic: shadowOffsetY
+                                    - generic: "}"
+                                  - text: px
+                                  - generic:
+                                    - generic: "${"
+                                    - generic: icon
+                                    - generic: .
+                                    - generic: shadowBlur
+                                    - generic: "}"
+                                  - text: px
+                                  - generic:
+                                    - generic: "${"
+                                    - generic: icon
+                                    - generic: .
+                                    - generic: shadowColor
+                                    - generic: "}"
+                                  - text: ")`"
+                                - text: ":"
+                                - generic: "'none'"
+                                - generic: ","
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: backgroundColor
+                                - text: ":"
+                                - generic: bgColor
+                                - generic: ","
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: backdropFilter
+                                - text: ":"
+                                - generic: icon
+                                - generic: .
+                                - generic: bgBlur
+                                - generic: ">"
+                                - generic: "0"
+                                - text: "?"
+                                - generic:
+                                  - text: "`blur("
+                                  - generic:
+                                    - generic: "${"
+                                    - generic: icon
+                                    - generic: .
+                                    - generic: bgBlur
+                                    - generic: "}"
+                                  - text: "px)`"
+                                - text: ":"
+                                - generic: "'none'"
+                                - generic: ","
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: WebkitBackdropFilter
+                                - text: ":"
+                                - generic: icon
+                                - generic: .
+                                - generic: bgBlur
+                                - generic: ">"
+                                - generic: "0"
+                                - text: "?"
+                                - generic:
+                                  - text: "`blur("
+                                  - generic:
+                                    - generic: "${"
+                                    - generic: icon
+                                    - generic: .
+                                    - generic: bgBlur
+                                    - generic: "}"
+                                  - text: "px)`"
+                                - text: ":"
+                                - generic: "'none'"
+                                - generic: ","
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: padding
+                                - text: ":"
+                                - generic: icon
+                                - generic: .
+                                - generic: bgShape
+                                - generic: "!=="
+                                - generic: "'none'"
+                                - text: "?"
+                                - generic:
+                                  - text: "`"
+                                  - generic:
+                                    - generic: "${"
+                                    - generic: (
+                                    - generic: icon
+                                    - generic: .
+                                    - generic: size
+                                    - generic: "*"
+                                    - generic: icon
+                                    - generic: .
+                                    - generic: padding
+                                    - generic: )
+                                    - generic: /
+                                    - generic: "100"
+                                    - generic: "}"
+                                  - text: "px`"
+                                - text: ":"
+                                - generic: "0"
+                                - generic: ","
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: borderRadius
+                                - text: ":"
+                                - generic: icon
+                                - generic: .
+                                - generic: bgShape
+                                - generic: ===
+                                - generic: "'circle'"
+                                - text: "?"
+                                - generic: "'50%'"
+                                - text: ":"
+                                - generic: icon
+                                - generic: .
+                                - generic: bgShape
+                                - generic: ===
+                                - generic: "'rounded-square'"
+                                - text: "?"
+                                - generic:
+                                  - text: "`"
+                                  - generic:
+                                    - generic: "${"
+                                    - generic: icon
+                                    - generic: .
+                                    - generic: radius
+                                    - generic: /
+                                    - generic: "2"
+                                    - generic: "}"
+                                  - text: "%`"
+                                - text: ":"
+                                - generic: icon
+                                - generic: .
+                                - generic: bgShape
+                                - generic: ===
+                                - generic: "'square'"
+                                - text: "?"
+                                - generic: "'0'"
+                                - text: ":"
+                                - generic: "'0'"
+                                - generic: ","
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: "}"
+                                - generic: "}"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: ">"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: "{"
+                                - generic: icon
+                                - generic: .
+                                - generic: customIconUrl
+                                - text: "?"
+                                - generic: (
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: <
+                                - generic: img
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: src
+                                - generic: =
+                                - generic: "{"
+                                - generic: icon
+                                - generic: .
+                                - generic: customIconUrl
+                                - generic: "}"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: alt
+                                - generic: =
+                                - generic: "\"Custom Icon\""
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: className
+                                - generic: =
+                                - generic: "\"w-full h-full object-contain\""
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: style
+                                - generic: =
+                                - generic: "{"
+                                - generic: "{"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: width
+                                - text: ":"
+                                - generic:
+                                  - text: "`"
+                                  - generic:
+                                    - generic: "${"
+                                    - generic: icon
+                                    - generic: .
+                                    - generic: size
+                                    - generic: "}"
+                                  - text: "px`"
+                                - generic: ","
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: height
+                                - text: ":"
+                                - generic:
+                                  - text: "`"
+                                  - generic:
+                                    - generic: "${"
+                                    - generic: icon
+                                    - generic: .
+                                    - generic: size
+                                    - generic: "}"
+                                  - text: "px`"
+                                - generic: ","
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: borderRadius
+                                - text: ":"
+                                - generic:
+                                  - text: "`"
+                                  - generic:
+                                    - generic: "${"
+                                    - generic: icon
+                                    - generic: .
+                                    - generic: customIconRadius
+                                    - generic: /
+                                    - generic: "2"
+                                    - generic: "}"
+                                  - text: "%`"
+                                - generic: ","
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: "}"
+                                - generic: "}"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: />
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: )
+                                - text: ":"
+                                - generic: (
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: <
+                                - generic: Icon
+                                - generic: icon
+                                - generic: =
+                                - generic: "{"
+                                - generic: icon
+                                - generic: .
+                                - generic: name
+                                - generic: "}"
+                                - generic: width
+                                - generic: =
+                                - generic: "{"
+                                - generic: icon
+                                - generic: .
+                                - generic: size
+                                - generic: "}"
+                                - generic: height
+                                - generic: =
+                                - generic: "{"
+                                - generic: icon
+                                - generic: .
+                                - generic: size
+                                - generic: "}"
+                                - generic: color
+                                - generic: =
+                                - generic: "{"
+                                - generic: icon
+                                - generic: .
+                                - generic: color
+                                - generic: "}"
+                                - generic: />
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: )
+                                - generic: "}"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: </
+                                - generic: div
+                                - generic: ">"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: )
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: "}"
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: // Helper to render Text
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: const
+                                - generic: renderText
+                                - generic: =
+                                - generic: (
+                                - generic: content
+                                - text: ":"
+                                - generic: string
+                                - generic: ","
+                                - generic: offsetX
+                                - text: ":"
+                                - generic: number
+                                - generic: =
+                                - generic: "0"
+                                - generic: ","
+                                - generic: offsetY
+                                - text: ":"
+                                - generic: number
+                                - generic: =
+                                - generic: "0"
+                                - generic: ","
+                                - generic: align
+                                - text: ":"
+                                - generic: "'left'"
+                                - generic: "|"
+                                - generic: "'center'"
+                                - generic: "|"
+                                - generic: "'right'"
+                                - generic: =
+                                - generic: "'center'"
+                                - generic: )
+                                - generic: =>
+                                - generic: (
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: <
+                                - generic: div
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: className
+                                - generic: =
+                                - generic: "\"whitespace-pre leading-tight\""
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: style
+                                - generic: =
+                                - generic: "{"
+                                - generic: "{"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: transform
+                                - text: ":"
+                                - generic:
+                                  - text: "`translate("
+                                  - generic:
+                                    - generic: "${"
+                                    - generic: offsetX
+                                    - generic: "}"
+                                  - text: px,
+                                  - generic:
+                                    - generic: "${"
+                                    - generic: offsetY
+                                    - generic: "}"
+                                  - text: px) rotate(
+                                  - generic:
+                                    - generic: "${"
+                                    - generic: text
+                                    - generic: .
+                                    - generic: rotation
+                                    - generic: "}"
+                                  - text: "deg)`"
+                                - generic: ","
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: fontSize
+                                - text: ":"
+                                - generic:
+                                  - text: "`"
+                                  - generic:
+                                    - generic: "${"
+                                    - generic: text
+                                    - generic: .
+                                    - generic: fontSize
+                                    - generic: "}"
+                                  - text: "px`"
+                                - generic: ","
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: color
+                                - text: ":"
+                                - generic: text
+                                - generic: .
+                                - generic: color
+                                - generic: ","
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: fontWeight
+                                - text: ":"
+                                - generic: text
+                                - generic: .
+                                - generic: fontWeight
+                                - generic: ","
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: fontFamily
+                                - text: ":"
+                                - generic: text
+                                - generic: .
+                                - generic: font
+                                - generic: ","
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: textAlign
+                                - text: ":"
+                                - generic: align
+                                - generic: ","
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: WebkitTextStroke
+                                - text: ":"
+                                - generic: text
+                                - generic: .
+                                - generic: strokeWidth
+                                - generic: ">"
+                                - generic: "0"
+                                - text: "?"
+                                - generic:
+                                  - text: "`"
+                                  - generic:
+                                    - generic: "${"
+                                    - generic: text
+                                    - generic: .
+                                    - generic: strokeWidth
+                                    - generic: "}"
+                                  - text: px
+                                  - generic:
+                                    - generic: "${"
+                                    - generic: text
+                                    - generic: .
+                                    - generic: strokeColor
+                                    - generic: "}"
+                                  - text: "`"
+                                - text: ":"
+                                - generic: undefined
+                                - generic: ","
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: "}"
+                                - generic: "}"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: ">"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: "{"
+                                - generic: content
+                                - generic: "}"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: </
+                                - generic: div
+                                - generic: ">"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: )
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: "// Layout: split text anchored to the canvas centerline."
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: // Left half hosts left text, right half hosts right text;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: // per-side textAlign controls whether the inner text hugs the centerline.
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: const
+                                - generic: renderAbsoluteIcon
+                                - generic: =
+                                - generic: (
+                                - generic: )
+                                - generic: =>
+                                - generic: icon
+                                - generic: .
+                                - generic: visible
+                                - generic: "&&"
+                                - generic: (
+                                - generic: icon
+                                - generic: .
+                                - generic: placement
+                                - generic: ===
+                                - generic: "'front'"
+                                - generic: "||"
+                                - generic: icon
+                                - generic: .
+                                - generic: placement
+                                - generic: ===
+                                - generic: "'behind'"
+                                - generic: )
+                                - text: "?"
+                                - generic: (
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: <
+                                - generic: div
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: className
+                                - generic: =
+                                - generic: "\"absolute top-1/2 left-1/2\""
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: style
+                                - generic: =
+                                - generic: "{"
+                                - generic: "{"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: transform
+                                - text: ":"
+                                - generic:
+                                  - text: "`translate(calc(-50% +"
+                                  - generic:
+                                    - generic: "${"
+                                    - generic: icon
+                                    - generic: .
+                                    - generic: x
+                                    - generic: "}"
+                                  - text: px), calc(-50% +
+                                  - generic:
+                                    - generic: "${"
+                                    - generic: icon
+                                    - generic: .
+                                    - generic: "y"
+                                    - generic: "}"
+                                  - text: "px))`"
+                                - generic: ","
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: zIndex
+                                - text: ":"
+                                - generic: icon
+                                - generic: .
+                                - generic: placement
+                                - generic: ===
+                                - generic: "'front'"
+                                - text: "?"
+                                - generic: "20"
+                                - text: ":"
+                                - generic: "5"
+                                - generic: ","
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: "}"
+                                - generic: "}"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: ">"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: "{"
+                                - generic: renderIcon
+                                - generic: (
+                                - generic: )
+                                - generic: "}"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: </
+                                - generic: div
+                                - generic: ">"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: )
+                                - text: ":"
+                                - generic: "null"
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: const
+                                - generic: renderInlineIcon
+                                - generic: =
+                                - generic: (
+                                - generic: )
+                                - generic: =>
+                                - generic: icon
+                                - generic: .
+                                - generic: visible
+                                - text: "?"
+                                - generic: (
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: <
+                                - generic: div
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: className
+                                - generic: =
+                                - generic: "\"flex-shrink-0\""
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: style
+                                - generic: =
+                                - generic: "{"
+                                - generic: "{"
+                                - generic: transform
+                                - text: ":"
+                                - generic:
+                                  - text: "`translate("
+                                  - generic:
+                                    - generic: "${"
+                                    - generic: icon
+                                    - generic: .
+                                    - generic: x
+                                    - generic: "}"
+                                  - text: px,
+                                  - generic:
+                                    - generic: "${"
+                                    - generic: icon
+                                    - generic: .
+                                    - generic: "y"
+                                    - generic: "}"
+                                  - text: "px)`"
+                                - generic: "}"
+                                - generic: "}"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: ">"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: "{"
+                                - generic: renderIcon
+                                - generic: (
+                                - generic: )
+                                - generic: "}"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: </
+                                - generic: div
+                                - generic: ">"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: )
+                                - text: ":"
+                                - generic: "null"
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: style
+                                - generic: =
+                                - generic: "{"
+                                - generic: "{"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: backgroundColor
+                                - text: ":"
+                                - generic: background
+                                - generic: .
+                                - generic: type
+                                - generic: ===
+                                - generic: "'solid'"
+                                - text: "?"
+                                - generic: background
+                                - generic: .
+                                - generic: color
+                                - text: ":"
+                                - generic: "'#ffffff'"
+                                - generic: ","
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: borderRadius
+                                - text: ":"
+                                - generic:
+                                  - text: "`"
+                                  - generic:
+                                    - generic: "${"
+                                    - generic: background
+                                    - generic: .
+                                    - generic: radius
+                                    - generic: "}"
+                                  - text: "px`"
+                                - generic: ","
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: "}"
+                                - generic: "}"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: ">"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: "{"
+                                - generic: background
+                                - generic: .
+                                - generic: type
+                                - generic: ===
+                                - generic: "'image'"
+                                - generic: "&&"
+                                - generic: background
+                                - generic: .
+                                - generic: imageUrl
+                                - generic: "&&"
+                                - generic: (
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: <
+                                - generic: img
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: src
+                                - generic: =
+                                - generic: "{"
+                                - generic: background
+                                - generic: .
+                                - generic: imageUrl
+                                - generic: "}"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: alt
+                                - generic: =
+                                - generic: "\"Background\""
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: className
+                                - generic: =
+                                - generic: "\"absolute inset-0 w-full h-full object-contain pointer-events-none\""
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: style
+                                - generic: =
+                                - generic: "{"
+                                - generic: "{"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: filter
+                                - text: ":"
+                                - generic:
+                                  - text: "`blur("
+                                  - generic:
+                                    - generic: "${"
+                                    - generic: background
+                                    - generic: .
+                                    - generic: blur
+                                    - generic: "}"
+                                  - text: "px)`"
+                                - generic: ","
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: transform
+                                - text: ":"
+                                - generic:
+                                  - text: "`scale("
+                                  - generic:
+                                    - generic: "${"
+                                    - generic: background
+                                    - generic: .
+                                    - generic: scale
+                                    - generic: "}"
+                                  - text: ) translate(
+                                  - generic:
+                                    - generic: "${"
+                                    - generic: background
+                                    - generic: .
+                                    - generic: positionX
+                                    - generic: "-"
+                                    - generic: "50"
+                                    - generic: "}"
+                                  - text: "%,"
+                                  - generic:
+                                    - generic: "${"
+                                    - generic: background
+                                    - generic: .
+                                    - generic: positionY
+                                    - generic: "-"
+                                    - generic: "50"
+                                    - generic: "}"
+                                  - text: "%) rotate("
+                                  - generic:
+                                    - generic: "${"
+                                    - generic: background
+                                    - generic: .
+                                    - generic: rotation
+                                    - generic: "}"
+                                  - text: "deg)`"
+                                - generic: ","
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: transformOrigin
+                                - text: ":"
+                                - generic: "'center'"
+                                - generic: ","
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: "}"
+                                - generic: "}"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: />
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: )
+                                - generic: "}"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: </
+                                - generic: div
+                                - generic: ">"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: "{"
+                                - generic: /* Inner Shadow Layer */
+                                - generic: "}"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: "{"
+                                - generic: background
+                                - generic: .
+                                - generic: shadow
+                                - generic: "&&"
+                                - generic: (
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: <
+                                - generic: div
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: className
+                                - generic: =
+                                - generic: "\"absolute inset-0 pointer-events-none z-0\""
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: style
+                                - generic: =
+                                - generic: "{"
+                                - generic: "{"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: boxShadow
+                                - text: ":"
+                                - generic:
+                                  - text: "`inset 0"
+                                  - generic:
+                                    - generic: "${"
+                                    - generic: background
+                                    - generic: .
+                                    - generic: shadowOffsetY
+                                    - generic: "}"
+                                  - text: px
+                                  - generic:
+                                    - generic: "${"
+                                    - generic: background
+                                    - generic: .
+                                    - generic: shadowBlur
+                                    - generic: "}"
+                                  - text: px
+                                  - generic:
+                                    - generic: "${"
+                                    - generic: background
+                                    - generic: .
+                                    - generic: shadowColor
+                                    - generic: "}"
+                                  - text: "`"
+                                - generic: ","
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: "}"
+                                - generic: "}"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: />
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: )
+                                - generic: "}"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: "{"
+                                - generic: /* Content Layer */
+                                - generic: "}"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: <
+                                - generic: div
+                                - generic: className
+                                - generic: =
+                                - generic: "\"z-10 pointer-events-none\""
+                                - generic: ">"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: "{"
+                                - generic: renderContent
+                                - generic: (
+                                - generic: )
+                                - generic: "}"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: </
+                                - generic: div
+                                - generic: ">"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: "{"
+                                - generic: /* Overlays / Guides Layer */
+                                - generic: "}"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: "{"
+                                - generic: selectedRatios
+                                - generic: .
+                                - generic: map
+                                - generic: (
+                                - generic: (
+                                - generic: ratioLabel
+                                - generic: )
+                                - generic: =>
+                                - generic: "{"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: const
+                                - generic: ratio
+                                - generic: =
+                                - generic: RATIOS
+                                - generic: .
+                                - generic: find
+                                - generic: (
+                                - generic: (
+                                - generic: r
+                                - generic: )
+                                - generic: =>
+                                - generic: r
+                                - generic: .
+                                - generic: label
+                                - generic: ===
+                                - generic: ratioLabel
+                                - generic: )
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: if
+                                - generic: (
+                                - generic: "!"
+                                - generic: ratio
+                                - generic: )
+                                - generic: return
+                                - generic: "null"
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: // Calculate position to center it
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: const
+                                - generic: left
+                                - generic: =
+                                - generic: (
+                                - generic: dimensions
+                                - generic: .
+                                - generic: width
+                                - generic: "-"
+                                - generic: ratio
+                                - generic: .
+                                - generic: width
+                                - generic: )
+                                - generic: /
+                                - generic: "2"
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: const
+                                - generic: top
+                                - generic: =
+                                - generic: (
+                                - generic: dimensions
+                                - generic: .
+                                - generic: height
+                                - generic: "-"
+                                - generic: ratio
+                                - generic: .
+                                - generic: height
+                                - generic: )
+                                - generic: /
+                                - generic: "2"
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: return
+                                - generic: (
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: <
+                                - generic: div
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: key
+                                - generic: =
+                                - generic: "{"
+                                - generic: ratioLabel
+                                - generic: "}"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: className
+                                - generic: =
+                                - generic: "\"absolute border-2 border-dashed border-blue-500/50 pointer-events-none flex items-start justify-start export-exclude\""
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: style
+                                - generic: =
+                                - generic: "{"
+                                - generic: "{"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: width
+                                - text: ":"
+                                - generic: ratio
+                                - generic: .
+                                - generic: width
+                                - generic: ","
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: height
+                                - text: ":"
+                                - generic: ratio
+                                - generic: .
+                                - generic: height
+                                - generic: ","
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: left
+                                - text: ":"
+                                - generic: left
+                                - generic: ","
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: top
+                                - text: ":"
+                                - generic: top
+                                - generic: ","
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: zIndex
+                                - text: ":"
+                                - generic: "50"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: "}"
+                                - generic: "}"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: ">"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: <
+                                - generic: span
+                                - generic: className
+                                - generic: =
+                                - generic: "\"bg-blue-500 text-white text-xs px-1 opacity-70\""
+                                - generic: ">"
+                                - generic: "{"
+                                - generic: ratioLabel
+                                - generic: "}"
+                                - generic: </
+                                - generic: span
+                                - generic: ">"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: </
+                                - generic: div
+                                - generic: ">"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: )
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: "}"
+                                - generic: )
+                                - generic: "}"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: "{"
+                                - generic: /* Ruler Overlay */
+                                - generic: "}"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: "{"
+                                - generic: showRuler
+                                - generic: "&&"
+                                - generic: (
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: <
+                                - generic: div
+                                - generic: className
+                                - generic: =
+                                - generic: "\"absolute inset-0 pointer-events-none opacity-30 z-40 export-exclude\""
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: style
+                                - generic: =
+                                - generic: "{"
+                                - generic: "{"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: backgroundImage
+                                - text: ":"
+                                - generic: "'linear-gradient(90deg, #000 1px, transparent 1px), linear-gradient(0deg, #000 1px, transparent 1px)'"
+                                - generic: ","
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: backgroundSize
+                                - text: ":"
+                                - generic: "'100px 100px'"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: "}"
+                                - generic: "}"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: />
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: )
+                                - generic: "}"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: </
+                                - generic: div
+                                - generic: ">"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: </
+                                - generic: div
+                                - generic: ">"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: </
+                                - generic: div
+                                - generic: ">"
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: )
+                                - generic: ;
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: "}"
+  - alert [ref=e1174]
