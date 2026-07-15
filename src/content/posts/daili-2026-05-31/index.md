@@ -1,6 +1,6 @@
 ---
 title: 博客将迎来新的更新
-published: 2026-05-17
+published: 2026-05-31
 description: 博客功能更新
 tags: [daily]
 category: daily
