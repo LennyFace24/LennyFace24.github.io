@@ -2,26 +2,31 @@ const MODE_NORMAL = 1, MODE_ENDLESS = 2, MODE_PRACTICE = 3;
 
 (function(w) {
     function getJsonI18N() {
+        // https://developer.mozilla.org/zh-CN/docs/Web/API/Navigator/language
+        
         const LANGUAGES = [
             { regex: /^zh\b/, lang: 'zh' },
             { regex: /^ja\b/, lang: 'ja' },
             { regex: /.*/, lang: 'en'}
-        ];
-        const lang = LANGUAGES.find(function(l) { return l.regex.test(navigator.language); }).lang;
+        ]
+
+        const lang = LANGUAGES.find(l => l.regex.test(navigator.language)).lang
+        
         return $.ajax({
-            url: './static/i18n/' + lang + '.json',
+            url: `./static/i18n/${lang}.json`,
             dataType: 'json',
             method: 'GET',
             async: false,
-            error: function() { alert('找不到语言文件: ' + lang); }
-        }).responseJSON;
+            success: data => res = data,
+            error: () => alert('找不到语言文件: ' + lang)
+        }).responseJSON
     }
 
-    const I18N = getJsonI18N();
+    const I18N = getJsonI18N()
 
     $('[data-i18n]').each(function() {
         const content = I18N[this.dataset.i18n];
-        if (content) $(this).text(content);
+        $(this).text(content);
     });
 
     $('[data-placeholder-i18n]').each(function() {
@@ -43,7 +48,7 @@ const MODE_NORMAL = 1, MODE_ENDLESS = 2, MODE_PRACTICE = 3;
         document.onkeydown = function (e) {
             let key = e.key.toLowerCase();
             if (Object.keys(map).indexOf(key) !== -1) {
-                click(map[key]);
+                click(map[key])
             }
         }
     }
@@ -54,6 +59,7 @@ const MODE_NORMAL = 1, MODE_ENDLESS = 2, MODE_PRACTICE = 3;
     let transform, transitionDuration, welcomeLayerClosed;
 
     let mode = getMode();
+
     let soundMode = getSoundMode();
 
     w.init = function() {
@@ -77,13 +83,15 @@ const MODE_NORMAL = 1, MODE_ENDLESS = 2, MODE_PRACTICE = 3;
         gameInit();
         initSetting();
         window.addEventListener('resize', refreshSize, false);
-    };
+    }
 
     function getMode() {
+        //有cookie优先返回cookie记录的，没有再返回normal
         return cookie('gameMode') ? parseInt(cookie('gameMode')) : MODE_NORMAL;
     }
 
     function getSoundMode() {
+        // 默认为 on
         return cookie('soundMode') ? cookie('soundMode') : 'on';
     }
 
@@ -96,7 +104,7 @@ const MODE_NORMAL = 1, MODE_ENDLESS = 2, MODE_PRACTICE = 3;
             $('#sound').text(I18N['sound-on']);
         }
         cookie('soundMode', soundMode);
-    };
+    }
 
     function modeToString(m) {
         return m === MODE_NORMAL ? I18N['normal'] : (m === MODE_ENDLESS ? I18N['endless'] : I18N['practice']);
@@ -106,12 +114,19 @@ const MODE_NORMAL = 1, MODE_ENDLESS = 2, MODE_PRACTICE = 3;
         mode = m;
         cookie('gameMode', m);
         $('#mode').text(modeToString(m));
-    };
+    }
 
     w.readyBtn = function() {
         closeWelcomeLayer();
         updatePanel();
-    };
+    }
+
+    w.winOpen = function() {
+        window.open(location.href + '?r=' + Math.random(), 'nWin', 'height=500,width=320,toolbar=no,menubar=no,scrollbars=no');
+        let opened = window.open('about:blank', '_self');
+        opened.opener = null;
+        opened.close();
+    }
 
     let refreshSizeTime;
 
@@ -160,7 +175,7 @@ const MODE_NORMAL = 1, MODE_ENDLESS = 2, MODE_PRACTICE = 3;
         _gameBBListIndex = 0,
         _gameOver = false,
         _gameStart = false,
-        _gameSettingNum = 20,
+        _gameSettingNum=20,
         _gameTime, _gameTimeNum, _gameScore, _date1, deviationTime;
 
     let _gameStartTime, _gameStartDatetime;
@@ -199,6 +214,7 @@ const MODE_NORMAL = 1, MODE_ENDLESS = 2, MODE_PRACTICE = 3;
         _date1 = new Date();
         _gameStartDatetime = _date1.getTime();
         _gameStart = true;
+
         _gameTime = setInterval(timer, 1000);
     }
 
@@ -232,14 +248,14 @@ const MODE_NORMAL = 1, MODE_ENDLESS = 2, MODE_PRACTICE = 3;
         } else if (mode === MODE_ENDLESS) {
             let cps = getCPS();
             let text = (cps === 0 ? I18N['calculating'] : cps.toFixed(2));
-            GameTimeLayer.innerHTML = 'CPS:' + text;
+            GameTimeLayer.innerHTML = `CPS:${text}`;
         } else {
-            GameTimeLayer.innerHTML = 'SCORE:' + _gameScore;
+            GameTimeLayer.innerHTML = `SCORE:${_gameScore}`;
         }
     }
-
+    //使重试按钮获得焦点
     function foucusOnReplay(){
-        $('#replay').focus();
+        $('#replay').focus()
     }
 
     function gameOver() {
@@ -252,6 +268,29 @@ const MODE_NORMAL = 1, MODE_ENDLESS = 2, MODE_PRACTICE = 3;
             showGameScoreLayer(cps);
             foucusOnReplay();
         }, 1500);
+    }
+
+
+    function encrypt(text) {
+        let encrypt = new JSEncrypt();
+        encrypt.setPublicKey("MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDTzGwX6FVKc7rDiyF3H+jKpBlRCV4jOiJ4JR33qZPVXx8ahW6brdBF9H1vdHBAyO6AeYBumKIyunXP9xzvs1qJdRNhNoVwHCwGDu7TA+U4M7G9FArDG0Y6k4LbS0Ks9zeRBMiWkW53yQlPshhtOxXCuZZOMLqk1vEvTCODYYqX5QIDAQAB");
+        return encrypt.encrypt(text);
+    }
+
+    function SubmitResults() {
+        if ($("#username").val() && _gameSettingNum === 20) {
+            let httpRequest = new XMLHttpRequest();
+            httpRequest.open('POST', './SubmitResults.php', true);
+            httpRequest.setRequestHeader("Content-type", "application/json");
+            let name = $("#username").val();
+            let message = $("#message").val();
+            let test = "|_|";
+            httpRequest.send(encrypt(_gameScore + test + name + test + tj + test + message));
+        }
+    }
+
+    function createTimeText(n) {
+        return 'TIME:' + Math.ceil(n);
     }
 
     let _ttreg = / t{1,2}(\d+)/,
@@ -330,7 +369,9 @@ const MODE_NORMAL = 1, MODE_ENDLESS = 2, MODE_PRACTICE = 3;
             tar.className = tar.className.replace(_ttreg, ' tt$1');
             _gameBBListIndex++;
             _gameScore++;
+
             updatePanel();
+
             gameLayerMoveNextRow();
         } else if (_gameStart && !tar.notEmpty) {
             if (soundMode === 'on') {
@@ -338,7 +379,7 @@ const MODE_NORMAL = 1, MODE_ENDLESS = 2, MODE_PRACTICE = 3;
             }
             tar.classList.add('bad');
             if (mode === MODE_PRACTICE) {
-                setTimeout(function() {
+                setTimeout(() => {
                     tar.classList.remove('bad');
                 }, 500);
             } else {
@@ -379,6 +420,7 @@ const MODE_NORMAL = 1, MODE_ENDLESS = 2, MODE_PRACTICE = 3;
     }
 
     function getBestScore(score) {
+        // 练习模式不会进入算分界面
         let cookieName = (mode === MODE_NORMAL ? 'bast-score' : 'endless-best-score');
         let best = cookie(cookieName) ? Math.max(parseFloat(cookie(cookieName)), score) : score;
         cookie(cookieName, best.toFixed(2), 100);
@@ -395,7 +437,7 @@ const MODE_NORMAL = 1, MODE_ENDLESS = 2, MODE_PRACTICE = 3;
 
     function showGameScoreLayer(cps) {
         let l = $('#GameScoreLayer');
-        let c = $('#' + _gameBBList[_gameBBListIndex - 1].id).attr('class').match(_ttreg)[1];
+        let c = $(`#${_gameBBList[_gameBBListIndex - 1].id}`).attr('class').match(_ttreg)[1];
         let score = (mode === MODE_ENDLESS ? cps : _gameScore);
         let best = getBestScore(score);
         l.attr('class', l.attr('class').replace(/bgc\d/, 'bgc' + c));
@@ -418,23 +460,22 @@ const MODE_NORMAL = 1, MODE_ENDLESS = 2, MODE_PRACTICE = 3;
     w.replayBtn = function() {
         gameRestart();
         hideGameScoreLayer();
-    };
+    }
 
     w.backBtn = function() {
         gameRestart();
         hideGameScoreLayer();
         showWelcomeLayer();
-    };
+    }
 
     function shareText(cps) {
         if (mode === MODE_NORMAL) {
             let date2 = new Date();
-            deviationTime = (date2.getTime() - _date1.getTime());
+            deviationTime = (date2.getTime() - _date1.getTime())
             if (!legalDeviationTime()) {
                 return I18N['time-over'] + ((deviationTime / 1000) - _gameSettingNum).toFixed(2) + 's';
             }
-            // Score submitted via leaderboard.js integration (index.html)
-            // No PHP backend needed
+            SubmitResults();
         }
 
         if (cps <= 5) return I18N['text-level-1'];
@@ -457,25 +498,27 @@ const MODE_NORMAL = 1, MODE_ENDLESS = 2, MODE_PRACTICE = 3;
             if (value) {
                 if (time) {
                     let date = new Date();
-                    date.setTime(date.getTime() + 864e5 * time);
-                    time = date.toGMTString();
+                    date.setTime(date.getTime() + 864e5 * time), time = date.toGMTString();
                 }
-                return document.cookie = name + "=" + escape(toStr(value)) + (time ? "; expires=" + time : "") + "; path=/", !0;
+                return document.cookie = name + "=" + escape(toStr(value)) + (time ? "; expires=" + time + (arguments[3] ?
+                    "; domain=" + arguments[3] + (arguments[4] ? "; path=" + arguments[4] + (arguments[5] ? "; secure" : "") : "") :
+                    "") : ""), !0;
             }
-            value = document.cookie.match("(?:^|;)\\s*" + name.replace(/([-.*+?^${}()|[\]\/\\])/g, "\\$1") + "=([^;]*)");
-            value = value && "string" == typeof value[1] ? unescape(value[1]) : !1;
-            if ((/^(\{|\[).+\}|\]$/.test(value) || /^[0-9]+$/g.test(value))) { try { value = JSON.parse(value); } catch(e) {} }
-            return value;
+            return value = document.cookie.match("(?:^|;)\\s*" + name.replace(/([-.*+?^${}()|[\]\/\\])/g, "\\$1") + "=([^;]*)"),
+                value = value && "string" == typeof value[1] ? unescape(value[1]) : !1, (/^(\{|\[).+\}|\]$/.test(value) ||
+                /^[0-9]+$/g.test(value)) && eval("value=" + value), value;
         }
-        var data = {};
+        let data = {};
         value = document.cookie.replace(/\s/g, "").split(";");
-        for (var i = 0; value.length > i; i++) name = value[i].split("="), name[1] && (data[name[0]] = unescape(name[1]));
+        for (let i = 0; value.length > i; i++) name = value[i].split("="), name[1] && (data[name[0]] = unescape(name[1]));
         return data;
     }
 
     document.write(createGameLayer());
 
     function initSetting() {
+        $("#username").val(cookie("username") ? cookie("username") : "");
+        $("#message").val(cookie("message") ? cookie("message") : "");
         if (cookie("title")) {
             $('title').text(cookie('title'));
             $('#title').val(cookie('title'));
@@ -484,7 +527,7 @@ const MODE_NORMAL = 1, MODE_ENDLESS = 2, MODE_PRACTICE = 3;
         if (keyboard) {
             keyboard = keyboard.toString().toLowerCase();
             $("#keyboard").val(keyboard);
-            map = {};
+            map = {}
             map[keyboard.charAt(0)] = 1;
             map[keyboard.charAt(1)] = 2;
             map[keyboard.charAt(2)] = 3;
@@ -498,38 +541,54 @@ const MODE_NORMAL = 1, MODE_ENDLESS = 2, MODE_PRACTICE = 3;
     }
 
     w.show_btn = function() {
-        $("#btn_group,#desc").css('display', 'block');
-        $('#setting').css('display', 'none');
-    };
+        $("#btn_group,#desc").css('display', 'block')
+        $('#setting').css('display', 'none')
+    }
 
     w.show_setting = function() {
-        $('#btn_group,#desc').css('display', 'none');
-        $('#setting').css('display', 'block');
+        $('#btn_group,#desc').css('display', 'none')
+        $('#setting').css('display', 'block')
         $('#sound').text(soundMode === 'on' ? I18N['sound-on'] : I18N['sound-off']);
-    };
+    }
 
     w.save_cookie = function() {
-        var settings = ['username', 'message', 'keyboard', 'title', 'gameTime'];
-        for (var i = 0; i < settings.length; i++) {
-            var s = settings[i];
-            var val = $('#' + s).val();
-            if (val) {
-                cookie(s, val.toString(), 100);
+        const settings = ['username', 'message', 'keyboard', 'title', 'gameTime'];
+        for (let s of settings) {
+            let value=$(`#${s}`).val();
+            if(value){
+                cookie(s, value.toString(), 100);
             }
         }
         initSetting();
-    };
+    }
+
+    function isnull(val) {
+        let str = val.replace(/(^\s*)|(\s*$)/g, '');
+        return str === '' || str === undefined || str == null;
+    }
+
+    w.goRank = function() {
+        let name = $("#username").val();
+        let link = './rank.php';
+        if (!isnull(name)) {
+            link += "?name=" + name;
+        }
+        window.location.href = link;
+    }
 
     function click(index) {
-        if (!welcomeLayerClosed) return;
+        if (!welcomeLayerClosed) {
+            return;
+        }
 
-        var p = _gameBBList[_gameBBListIndex];
-        var base = parseInt($('#' + p.id).attr('num')) - p.cell;
-        var num = base + index - 1;
-        var id = p.id.substring(0, 11) + num;
+        let p = _gameBBList[_gameBBListIndex];
+        let base = parseInt($(`#${p.id}`).attr("num")) - p.cell;
+        let num = base + index - 1;
+        let id = p.id.substring(0, 11) + num;
 
-        var fakeEvent = {
+        let fakeEvent = {
             clientX: ((index - 1) * blockSize + index * blockSize) / 2 + body.offsetLeft,
+            // Make sure that it is in the area
             clientY: (touchArea[0] + touchArea[1]) / 2,
             target: document.getElementById(id),
         };
@@ -537,40 +596,49 @@ const MODE_NORMAL = 1, MODE_ENDLESS = 2, MODE_PRACTICE = 3;
         gameTapEvent(fakeEvent);
     }
 
-    var clickBeforeStyle = $('<style></style>');
-    var clickAfterStyle = $('<style></style>');
+    const clickBeforeStyle = $('<style></style>');
+    const clickAfterStyle = $('<style></style>');
     clickBeforeStyle.appendTo($(document.head));
     clickAfterStyle.appendTo($(document.head));
 
     function saveImage(dom, callback) {
         if (dom.files && dom.files[0]) {
-            var reader = new FileReader();
+            let reader = new FileReader();
             reader.onload = function() {
                 callback(this.result);
-            };
+            }
             reader.readAsDataURL(dom.files[0]);
         }
     }
 
+
     w.getClickBeforeImage = function() {
         $('#click-before-image').click();
-    };
+    }
 
     w.saveClickBeforeImage = function() {
-        var img = document.getElementById('click-before-image');
-        saveImage(img, function(r) {
-            clickBeforeStyle.html('.t1, .t2, .t3, .t4, .t5 { background-size: auto 100%; background-image: url(' + r + '); }');
-        });
-    };
+        const img = document.getElementById('click-before-image');
+        saveImage(img, r => {
+            clickBeforeStyle.html(`
+                .t1, .t2, .t3, .t4, .t5 {
+                   background-size: auto 100%;
+                   background-image: url(${r});
+            }`);
+        })
+    }
 
     w.getClickAfterImage = function() {
         $('#click-after-image').click();
-    };
+    }
 
     w.saveClickAfterImage = function() {
-        var img = document.getElementById('click-after-image');
-        saveImage(img, function(r) {
-            clickAfterStyle.html('.tt1, .tt2, .tt3, .tt4, .tt5 { background-size: auto 86%; background-image: url(' + r + '); }');
-        });
-    };
-})(window);
+        const img = document.getElementById('click-after-image');
+        saveImage(img, r => {
+            clickAfterStyle.html(`
+                .tt1, .tt2, .tt3, .tt4, .tt5 {
+                  background-size: auto 86%;
+                  background-image: url(${r});
+            }`);
+        })
+    }
+}) (window);

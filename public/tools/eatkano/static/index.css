@@ -88,6 +88,7 @@ body {
     -moz-box-sizing: border-box;
 }
 
+
 #welcome {
     background-color: rgba(0, 0, 0, .8);
     text-align: center;
@@ -162,15 +163,27 @@ body {
 }
 
 @-ms-keyframes flash {
-    0% { opacity: 1; }
-    50% { opacity: 0; }
-    100% { opacity: 1; }
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 @-webkit-keyframes flash {
-    0% { opacity: 1; }
-    50% { opacity: 0; }
-    100% { opacity: 1; }
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 .flash {
@@ -204,6 +217,8 @@ body {
     background-repeat: no-repeat;
     background-size: auto 100%;
 }
+
+
 
 #GameScoreLayer-btn .btn,
 #GameScoreLayer-share .btn {
@@ -244,15 +259,21 @@ body {
 }
 
 @media (max-width: 450px) {
-    #btn_group { max-width: 110px !important; }
+    #btn_group {
+        max-width: 110px !important;
+    }
 }
 
 @media (max-width: 600px) {
-    #btn_group { max-width: 125px; }
+    #btn_group {
+        max-width: 125px;
+    }
 }
 
 @media (max-width: 800px) {
-    #btn_group { max-width: 150px; }
+    #btn_group {
+        max-width: 150px;
+    }
 }
 
 #setting {
@@ -260,7 +281,9 @@ body {
 }
 
 @media (max-width: 1200px) {
-    #setting { width: 80%; }
+    #setting {
+        width: 80%;
+    }
 }
 
 #GameScoreLayer .col-3, #GameScoreLayer .col-2 {
