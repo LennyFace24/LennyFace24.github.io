@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <title>吃掉小鹿乃 - EatKano</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, width=device-width,target-densitydpi=device-dpi" />
+    <link href="./static/index.css" rel="stylesheet" type="text/css">
+    <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        /* Leaderboard overlay styles */
+        .leaderboard-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 100;
+            background: rgba(0,0,0,0.85);
+            justify-content: center;
+            align-items: center;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+        .leaderboard-overlay.active {
+            display: flex;
+        }
+        .leaderboard-panel {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            max-width: 500px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            color: #fff;
+        }
+        .leaderboard-panel h2 {
+            text-align: center;
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 0.25rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        .leaderboard-panel .lb-date {
+            text-align: center;
+            font-size: 0.85rem;
+            opacity: 0.75;
+            margin-bottom: 1rem;
+        }
+        .lb-entry {
+            display: flex;
+            align-items: center;
+            padding: 0.6rem 0.8rem;
+            margin-bottom: 0.4rem;
+            border-radius: 0.8rem;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(4px);
+            transition: all 0.2s;
+        }
+        .lb-entry:hover {
+            background: rgba(255,255,255,0.18);
+        }
+        .lb-entry.is-player {
+            background: rgba(255,215,0,0.2);
+            border: 1px solid rgba(255,215,0,0.4);
+        }
+        .lb-entry .rank {
+            width: 2.2rem;
+            font-weight: 800;
+            font-size: 1.1rem;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .lb-entry .rank.gold { color: #ffd700; }
+        .lb-entry .rank.silver { color: #c0c0c0; }
+        .lb-entry .rank.bronze { color: #cd7f32; }
+        .lb-entry .name {
+            flex: 1;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-left: 0.5rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .lb-entry .score {
+            font-weight: 800;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+        .lb-empty {
+            text-align: center;
+            padding: 2rem;
+            opacity: 0.7;
+            font-size: 1rem;
+        }
+        .lb-player-info {
+            text-align: center;
+            padding: 0.6rem;
+            margin-bottom: 0.8rem;
+            border-radius: 0.8rem;
+            background: rgba(255,255,255,0.08);
+            font-size: 0.9rem;
+        }
+        .lb-player-info strong {
+            color: #ffd700;
+        }
+        .lb-close-btn {
+            display: block;
+            width: 100%;
+            padding: 0.7rem;
+            margin-top: 0.8rem;
+            border: none;
+            border-radius: 0.8rem;
+            background: rgba(255,255,255,0.2);
+            color: #fff;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .lb-close-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Name input overlay */
+        .name-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 99;
+            background: rgba(0,0,0,0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        .name-overlay.active {
+            display: flex;
+        }
+        .name-panel {
+            background: #fff;
+            border-radius: 1.5rem;
+            padding: 2rem;
+            max-width: 380px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        .name-panel h3 {
+            font-weight: 800;
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+        .name-panel p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1.2rem;
+        }
+        .name-panel input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 0.8rem;
+            font-size: 1rem;
+            text-align: center;
+            outline: none;
+            transition: border-color 0.2s;
+            box-sizing: border-box;
+        }
+        .name-panel input:focus {
+            border-color: #667eea;
+        }
+        .name-panel .name-submit {
+            display: block;
+            width: 100%;
+            padding: 0.8rem;
+            margin-top: 1rem;
+            border: none;
+            border-radius: 0.8rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .name-panel .name-submit:hover {
+            opacity: 0.9;
+        }
+        .name-panel .name-skip {
+            display: inline-block;
+            margin-top: 0.8rem;
+            color: #999;
+            font-size: 0.85rem;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        .name-panel .name-skip:hover {
+            color: #666;
+        }
+
+        /* LB button on welcome screen */
+        .lb-nav-btn {
+            position: fixed;
+            top: 0.8rem;
+            right: 0.8rem;
+            z-index: 12;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 2rem;
+            padding: 0.4rem 1rem;
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .lb-nav-btn:hover {
+            background: rgba(255,255,255,0.25);
+        }
+
+        /* Back button */
+        .back-nav-btn {
+            position: fixed;
+            top: 0.8rem;
+            left: 0.8rem;
+            z-index: 12;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 2rem;
+            padding: 0.4rem 1rem;
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-decoration: none;
+        }
+        .back-nav-btn:hover {
+            background: rgba(255,255,255,0.25);
+            color: #fff;
+        }
+
+        /* Game score layer leaderboard button */
+        #leaderboard-btn {
+            display: none;
+        }
+
+        /* Make the game fill the available space */
+        html, body {
+            overflow: hidden;
+            height: 100%;
+        }
+    </style>
+</head>
+<body onLoad="init()" oncontextmenu="self.event.returnValue=false">
+
+<!-- Nav buttons -->
+<a href="/tools/" class="back-nav-btn" id="backBtn">← 返回工具</a>
+<button class="lb-nav-btn" id="lbNavBtn" onclick="showLeaderboard()">🏆 排行</button>
+
+<!-- Leaderboard overlay -->
+<div class="leaderboard-overlay" id="leaderboardOverlay">
+    <div class="leaderboard-panel">
+        <h2>🏆 <span data-i18n="rank-title">吃掉小鹿乃</span></h2>
+        <div class="lb-date" id="lbDate"></div>
+        <div id="lbPlayerInfo" class="lb-player-info" style="display:none"></div>
+        <div id="lbEntries"></div>
+        <button class="lb-close-btn" onclick="hideLeaderboard()">✕ <span data-i18n="close">关闭</span></button>
+    </div>
+</div>
+
+<!-- Name input overlay -->
+<div class="name-overlay" id="nameOverlay">
+    <div class="name-panel">
+        <h3>🏆 <span data-i18n="leaderboard"></span></h3>
+        <p><span data-i18n="no-name-tip">提示：你玩之前还没有填名字</span></p>
+        <input type="text" id="nameInput" maxlength="20" placeholder="输入你的名称..." autocomplete="off" />
+        <button class="name-submit" id="nameSubmitBtn"><span data-i18n="submit-name">提交名称</span></button>
+        <div class="name-skip" onclick="closeNameOverlay()"><span data-i18n="close">跳过</span></div>
+    </div>
+</div>
+
+<!-- Original game structures -->
+<div id="GameScoreLayer" class="BBOX SHADE bgc1" style="display:none;">
+    <div style="padding:5%;margin-top: 200px;background-color: rgba(125, 181, 216, 0.3);">
+        <div id="GameScoreLayer-text"></div>
+        <div id="GameScoreLayer-CPS" class="mb-2 d-flex flex-row justify-content-center text-start">
+            <div class="col-3">CPS</div>
+            <div class="col-2" id="cps"></div>
+        </div>
+        <div id="GameScoreLayer-score" class="mb-2 d-flex flex-row justify-content-center text-start">
+            <div class="col-3" data-i18n="score"></div>
+            <div class="col-2" id="score"></div>
+        </div>
+        <div id="GameScoreLayer-bast" class="mb-2 d-flex flex-row justify-content-center text-start">
+            <div class="col-3" data-i18n="best"></div>
+            <div class="col-2" id="best"></div>
+        </div>
+        <button type="button" class="btn btn-secondary btn-lg" id="replay" onclick="replayBtn()" data-i18n="again">AGAIN</button>
+        <button type="button" class="btn btn-secondary btn-lg" onclick="backBtn()" data-i18n="home">HOME</button>
+        <button type="button" class="btn btn-primary btn-lg" onclick="showLeaderboard()" data-i18n="rank">RANK</button>
+    </div>
+</div>
+
+<div id="welcome" class="SHADE BOX-M">
+    <div class="welcome-bg FILL"></div>
+    <div class="FILL BOX-M" style="position:absolute;top:0;left:0;right:0;bottom:0;z-index:5;">
+        <div class="container">
+            <div class="container mb-5">
+                <div style="font-size:2.6em; color:#FEF002;" data-i18n="game-title">GAME-TITLE</div><br />
+                <div id="desc" style="display: block;font-size:2.2em; color:#fff; line-height:1.5em;">
+                    <span data-i18n="game-intro1">GAME-INTRO1</span><br />
+                    <span data-i18n="game-intro2">GAME-INTRO2</span><br />
+                </div>
+            </div>
+            <div id="btn_group" class="container text-nowrap">
+                <div class="d-flex justify-content-center flex-column flex-fill">
+                    <a class="btn btn-primary btn-lg mb-3" onclick="readyBtn()" data-i18n="start">START</a>
+                    <div class="dropdown mb-3">
+                        <a class="w-100 btn btn-secondary btn-lg" href="javascript: void(0);" role="button" id="mode" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="normal">NORMAL</a>
+                        <ul class="dropdown-menu" aria-labelledby="mode">
+                            <li><a class="dropdown-item" onclick="changeMode(MODE_NORMAL)" data-i18n="normal">NORMAL</a></li>
+                            <li><a class="dropdown-item" onclick="changeMode(MODE_ENDLESS)" data-i18n="endless">ENDLESS</a></li>
+                            <li><a class="dropdown-item" onclick="changeMode(MODE_PRACTICE)" data-i18n="practice">PRACTICE</a></li>
+                        </ul>
+                    </div>
+                    <a class="btn btn-secondary btn-lg" onclick="show_setting()" data-i18n="settings">SETTINGS</a>
+                </div>
+            </div>
+            <div id="setting" class="container" style="display: none;">
+                <div class="container mb-3 btn-group">
+                    <a data-i18n="img-before" type="button" class="btn text-nowrap btn-secondary me-1" onclick="getClickBeforeImage()" style="left: 0">IMG-BEFORE</a>
+                    <input type="file" id="click-before-image" accept="image/*" class="d-none" onchange="saveClickBeforeImage()">
+                    <a data-i18n="img-after" type="button" class="btn text-nowrap btn-secondary me-1" onclick="getClickAfterImage()" style="right: 0">IMG-AFTER</a>
+                    <input type="file" id="click-after-image" accept="image/*" style="display: none;" onchange="saveClickAfterImage()">
+                    <a id="sound" type="button" class="btn text-nowrap btn-secondary" onclick="changeSoundMode()"></a>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend col-2">
+                        <span class="input-group-text" data-i18n="title">TITLE</span>
+                    </div>
+                    <input data-placeholder-i18n="eat-kano" type="text" id="title" class="form-control" placeholder="EAT-KANO">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend col-2">
+                        <span data-i18n="key" class="input-group-text">KEY</span>
+                    </div>
+                    <input data-placeholder-i18n="default-dfjk" type="text" id="keyboard" class="form-control" maxlength=4 placeholder="DFJK">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend col-2">
+                        <span data-i18n="time" class="input-group-text">TIME</span>
+                    </div>
+                    <input data-placeholder-i18n="default-20s" type="text" id="gameTime" class="form-control" maxlength=4 placeholder="20s">
+                </div>
+                <button type="button" class="btn btn-secondary btn-lg" onclick="show_btn();save_cookie();" data-i18n="ok">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="./static/leaderboard.js"></script>
+<script src="./static/index.js"></script>
+<script>
+// === Leaderboard Integration ===
+
+// Show name input on game start if player has no name
+(function checkPlayerName() {
+    if (!Leaderboard.getPlayerName()) {
+        // Use a small delay to let page render first
+        setTimeout(function() {
+            document.getElementById('nameOverlay').classList.add('active');
+            document.getElementById('nameInput').focus();
+        }, 500);
+    }
+})();
+
+// Name submit handler
+document.getElementById('nameSubmitBtn').addEventListener('click', function() {
+    submitName();
+});
+document.getElementById('nameInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') submitName();
+});
+
+function submitName() {
+    const input = document.getElementById('nameInput');
+    const name = Leaderboard.setPlayerName(input.value);
+    if (name) {
+        closeNameOverlay();
+    } else {
+        input.focus();
+        input.select();
+    }
+}
+
+function closeNameOverlay() {
+    document.getElementById('nameOverlay').classList.remove('active');
+}
+
+function showLeaderboard() {
+    const overlay = document.getElementById('leaderboardOverlay');
+    const entries = Leaderboard.getEntries();
+    const container = document.getElementById('lbEntries');
+    const playerInfo = document.getElementById('lbPlayerInfo');
+    const lbDate = document.getElementById('lbDate');
+
+    lbDate.textContent = Leaderboard.getToday();
+
+    // Player info
+    const playerName = Leaderboard.getPlayerName();
+    if (playerName) {
+        const playerRank = Leaderboard.getPlayerRank();
+        const playerBest = Leaderboard.getPlayerBestToday();
+        if (playerRank > 0) {
+            playerInfo.style.display = 'block';
+            playerInfo.innerHTML = '👤 <strong>' + escapeHtml(playerName) + '</strong> — ' +
+                '排名 <strong>#' + playerRank + '</strong> | 当日最佳 <strong>' + playerBest + '</strong>';
+        } else if (playerBest > 0) {
+            playerInfo.style.display = 'block';
+            playerInfo.innerHTML = '👤 <strong>' + escapeHtml(playerName) + '</strong> — ' +
+                '当日最佳 <strong>' + playerBest + '</strong>';
+        } else {
+            playerInfo.style.display = 'block';
+            playerInfo.innerHTML = '👤 <strong>' + escapeHtml(playerName) + '</strong> — 暂无记录';
+        }
+    } else {
+        playerInfo.style.display = 'none';
+    }
+
+    if (entries.length === 0) {
+        container.innerHTML = '<div class="lb-empty">📭 <span data-i18n="rank-empty">暂无排行数据</span></div>';
+    } else {
+        var html = '';
+        for (var i = 0; i < entries.length; i++) {
+            var e = entries[i];
+            var rankClass = '';
+            if (i === 0) rankClass = 'gold';
+            else if (i === 1) rankClass = 'silver';
+            else if (i === 2) rankClass = 'bronze';
+            var isPlayer = (playerName && e.name === playerName);
+            var medal = '';
+            if (i === 0) medal = '🥇';
+            else if (i === 1) medal = '🥈';
+            else if (i === 2) medal = '🥉';
+            else medal = '#' + (i + 1);
+
+            html += '<div class="lb-entry' + (isPlayer ? ' is-player' : '') + '">' +
+                '<div class="rank ' + rankClass + '">' + medal + '</div>' +
+                '<div class="name">' + escapeHtml(e.name) + '</div>' +
+                '<div class="score">' + e.score + '</div>' +
+                '</div>';
+        }
+        container.innerHTML = html;
+    }
+
+    overlay.classList.add('active');
+}
+
+function hideLeaderboard() {
+    document.getElementById('leaderboardOverlay').classList.remove('active');
+}
+
+function escapeHtml(str) {
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+}
+
+// === Intercept game over to submit score ===
+var _origGameOver = gameOver;
+gameOver = function() {
+    // Call original
+    _origGameOver();
+
+    // Submit score
+    if (mode === MODE_NORMAL) {
+        var score = _gameScore;
+        var submitted = Leaderboard.submitScore(score);
+        if (!submitted) {
+            // Player has no name - show name input
+            setTimeout(function() {
+                document.getElementById('nameOverlay').classList.add('active');
+                document.getElementById('nameInput').focus();
+            }, 2000);
+        }
+    }
+};
+
+// === Intercept replayBtn to refresh leaderboard recognition ===
+var _origReplayBtn = replayBtn;
+replayBtn = function() {
+    _origReplayBtn();
+};
+
+// Refresh leaderboard date display
+</script>
+</body>
+</html>
