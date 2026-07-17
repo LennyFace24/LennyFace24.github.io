@@ -1,0 +1,8 @@
+---
+// 直接渲染 EatKano 静态游戏页面
+import { readFileSync } from "node:fs";
+
+const html = readFileSync("public/tools/eatkano/index.html", "utf-8");
+---
+
+<Fragment set:html={html} />
