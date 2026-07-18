@@ -45,9 +45,7 @@ content:
       primary: title
       sort: published
       order: desc
-    filename:
-      template: "{primary}.md"
-      field: primary
+    filename: "{primary}.md"
 
   - name: about
     label: 关于页面
