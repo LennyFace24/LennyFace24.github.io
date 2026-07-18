@@ -43,9 +43,10 @@ content:
         label: 正文
     view:
       primary: title
-      sort: published
-      order: desc
-    filename: "{primary}.md"
+      sort: [published, title]
+      default:
+        sort: published
+        order: desc
 
   - name: about
     label: 关于页面
