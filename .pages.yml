@@ -1,1 +1,59 @@
-hello
+media:
+  input: src/assets/images
+  output: /assets/images
+  rename: safe
+
+content:
+  - name: posts
+    label: 文章
+    type: collection
+    path: src/content/posts
+    subfolders: true
+    fields:
+      - name: title
+        type: string
+        label: 标题
+        required: true
+      - name: published
+        type: date
+        label: 发布日期
+        required: true
+      - name: description
+        type: text
+        label: 描述
+      - name: image
+        type: image
+        label: 封面图
+      - name: tags
+        type: string
+        label: 标签
+        list: true
+      - name: category
+        type: string
+        label: 分类
+      - name: draft
+        type: boolean
+        label: 草稿
+        default: false
+      - name: lang
+        type: string
+        label: 语言
+      - name: body
+        type: rich-text
+        label: 正文
+    view:
+      primary: title
+      sort: published
+      order: desc
+    filename:
+      template: "{primary}.md"
+      field: primary
+
+  - name: about
+    label: 关于页面
+    type: file
+    path: src/content/spec/about.md
+    fields:
+      - name: body
+        type: rich-text
+        label: 正文
