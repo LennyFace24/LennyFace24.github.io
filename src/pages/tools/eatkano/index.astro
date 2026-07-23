@@ -269,7 +269,10 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- ====== End Leaderboard Plugin ====== -->
 `;
 
-const finalHtml = originalHtml.replace("</body>", leaderboardHtml + "\n</body>");
+const finalHtml = originalHtml.replace(
+	"</body>",
+	`${leaderboardHtml}\n</body>`,
+);
 ---
 
 <Fragment set:html={finalHtml} />
