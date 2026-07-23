@@ -29,6 +29,10 @@ export type SiteConfig = {
 			text: string;
 			url?: string;
 		};
+		random?: {
+			enable: boolean;
+			api?: string;
+		};
 	};
 	toc: {
 		enable: boolean;

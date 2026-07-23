@@ -1,0 +1,390 @@
+---
+import MainGridLayout from "@layouts/MainGridLayout.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<MainGridLayout title="AES 加解密" description="基于 AES-GCM 的对称加密解密工具">
+
+<div class="card-base p-6 onload-animation">
+    <div class="flex items-center gap-3 mb-6">
+        <Icon name="material-symbols:enhanced-encryption-rounded" class="text-2xl text-[var(--primary)]" />
+        <h1 class="text-2xl font-bold text-90">AES 加解密</h1>
+    </div>
+
+    <p class="text-75 mb-6">基于浏览器原生 Web Crypto API 的 <strong>AES-GCM</strong> 对称加密。密钥由 PBKDF2 派生（100,000 次迭代 + 随机盐），IV 随机生成，密文以 Base64 输出，所有操作在本地完成。</p>
+
+    <!-- 模式切换 -->
+    <div class="flex gap-2 mb-5">
+        <button class="mode-btn active" data-mode="encrypt" onclick="switchMode('encrypt')">加密</button>
+        <button class="mode-btn" data-mode="decrypt" onclick="switchMode('decrypt')">解密</button>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <!-- 左侧：参数与输入 -->
+        <div class="space-y-4">
+            <div>
+                <label class="text-sm font-semibold text-75 mb-1.5 block">密码（密钥派生口令）</label>
+                <div class="relative">
+                    <input type="password" id="password" placeholder="输入密码..." class="input-field pr-10">
+                    <button type="button" class="absolute right-2 top-1/2 -translate-y-1/2 text-30 hover:text-[var(--primary)]" onclick="togglePassword('password', this)" title="显示/隐藏">
+                        <Icon name="material-symbols:visibility-outline" class="text-lg" />
+                    </button>
+                </div>
+                <div class="text-xs text-30 mt-1">密码强度：<span id="strength">—</span></div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+                <div>
+                    <label class="text-xs font-semibold text-75 mb-1 block">密钥长度</label>
+                    <select id="keyLength" class="input-field">
+                        <option value="128">AES-128</option>
+                        <option value="192">AES-192</option>
+                        <option value="256" selected>AES-256</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="text-xs font-semibold text-75 mb-1 block">PBKDF2 迭代次数</label>
+                    <select id="iterations" class="input-field">
+                        <option value="10000">10,000</option>
+                        <option value="100000" selected>100,000</option>
+                        <option value="250000">250,000</option>
+                        <option value="500000">500,000</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <label class="text-sm font-semibold text-75 mb-1.5 block" id="inputLabel">明文输入</label>
+                <textarea id="input" rows="10" placeholder="输入要加密的内容..." class="textarea-field font-mono text-sm"></textarea>
+                <div class="text-xs text-30 mt-1">字符数：<span id="inputCount">0</span> · UTF-8 字节：<span id="inputBytes">0</span></div>
+            </div>
+        </div>
+
+        <!-- 右侧：输出 -->
+        <div class="space-y-4">
+            <div>
+                <div class="flex items-center justify-between mb-1.5">
+                    <label class="text-sm font-semibold text-75" id="outputLabel">密文输出（Base64）</label>
+                    <div class="flex gap-2">
+                        <button class="btn-soft text-xs" onclick="copyOutput()">复制</button>
+                        <button class="btn-soft text-xs" onclick="swapOutput()">用作输入 ↑</button>
+                    </div>
+                </div>
+                <textarea id="output" rows="10" readonly placeholder="结果将在此显示..." class="textarea-field font-mono text-sm"></textarea>
+                <div class="text-xs text-30 mt-1 flex justify-between">
+                    <span>字符数：<span id="outputCount">0</span></span>
+                    <span id="statusText" class="text-[var(--primary)]"></span>
+                </div>
+            </div>
+
+            <!-- 高级信息 -->
+            <details class="card-base p-3">
+                <summary class="cursor-pointer text-xs font-semibold text-75 flex items-center gap-2">
+                    <Icon name="material-symbols:info-outline" class="text-base text-[var(--primary)]" />
+                    上次操作的详细信息
+                </summary>
+                <div class="mt-2 space-y-1 text-xs text-50 font-mono" id="detailInfo">
+                    <div>暂无操作记录</div>
+                </div>
+            </details>
+        </div>
+    </div>
+
+    <!-- 操作按钮 -->
+    <div class="flex flex-wrap gap-3 mt-5">
+        <button class="btn-primary flex items-center gap-2" onclick="doAction()">
+            <Icon name="material-symbols:lock-outline" class="text-lg" id="actionIcon" />
+            <span id="actionBtnText">加密</span>
+        </button>
+        <button class="btn-soft text-sm flex items-center gap-2 px-3 py-2" onclick="generatePassword()">
+            <Icon name="material-symbols:password" class="text-base" />
+            生成随机密码
+        </button>
+    </div>
+
+    <!-- 提示 -->
+    <div class="mt-6 p-3 rounded-lg bg-[var(--enter-btn-bg)] text-xs text-50 leading-relaxed">
+        <p><strong class="text-75">说明：</strong></p>
+        <ul class="list-disc ml-5 mt-1 space-y-0.5">
+            <li>使用 <strong>AES-GCM</strong>（认证加密），同时保证机密性与完整性。</li>
+            <li>密钥通过 <strong>PBKDF2-SHA256</strong> 从密码派生，附带随机盐（16 字节）。</li>
+            <li>IV（初始化向量）每次加密随机生成（12 字节），与盐一起嵌入密文。</li>
+            <li>输出格式：<code>Base64( salt[16] || iv[12] || ciphertext )</code>。</li>
+            <li>解密时只需相同的密码和参数即可还原，密码不会上传到任何服务器。</li>
+        </ul>
+    </div>
+</div>
+
+<style>
+    .input-field {
+        background: var(--enter-btn-bg);
+        border: 1px solid transparent;
+        border-radius: 0.5rem;
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875rem;
+        width: 100%;
+        transition: border-color 0.2s;
+        box-sizing: border-box;
+        color: var(--text-90);
+    }
+    .input-field:focus { outline: none; border-color: var(--primary); }
+    .textarea-field {
+        background: var(--enter-btn-bg);
+        border: 1px solid transparent;
+        border-radius: 0.75rem;
+        padding: 0.75rem;
+        font-size: 0.875rem;
+        width: 100%;
+        resize: vertical;
+        transition: border-color 0.2s;
+        box-sizing: border-box;
+        min-height: 220px;
+        color: var(--text-90);
+    }
+    .textarea-field:focus { outline: none; border-color: var(--primary); }
+    .mode-btn {
+        padding: 0.5rem 1.5rem;
+        border-radius: 0.5rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+        background: var(--enter-btn-bg);
+        color: var(--text-75);
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    .mode-btn:hover { color: var(--primary); }
+    .mode-btn.active {
+        background: var(--primary);
+        color: white;
+    }
+    .btn-soft {
+        background: var(--enter-btn-bg);
+        color: var(--text-75);
+        border: none;
+        cursor: pointer;
+        border-radius: 0.375rem;
+        padding: 0.25rem 0.6rem;
+        transition: all 0.2s;
+    }
+    .btn-soft:hover { color: var(--primary); }
+    .btn-primary {
+        background: var(--primary);
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 0.5rem;
+        padding: 0.5rem 1.25rem;
+        font-weight: 500;
+        font-size: 0.875rem;
+        transition: all 0.2s;
+    }
+    .btn-primary:hover { filter: brightness(1.1); }
+    .btn-primary:active { transform: scale(0.97); }
+    details summary::-webkit-details-marker { display: none; }
+    details summary::marker { display: none; content: ''; }
+</style>
+
+<script is:inline>
+    let mode = 'encrypt';
+
+    function switchMode(m) {
+        mode = m;
+        document.querySelectorAll('.mode-btn').forEach(b => b.classList.toggle('active', b.dataset.mode === m));
+        const isEnc = m === 'encrypt';
+        document.getElementById('inputLabel').textContent = isEnc ? '明文输入' : '密文输入（Base64）';
+        document.getElementById('outputLabel').textContent = isEnc ? '密文输出（Base64）' : '解密结果';
+        document.getElementById('input').placeholder = isEnc ? '输入要加密的内容...' : '输入 Base64 密文...';
+        document.getElementById('actionBtnText').textContent = isEnc ? '加密' : '解密';
+        document.getElementById('actionIcon').setAttribute('name', isEnc ? 'material-symbols:lock-outline' : 'material-symbols:lock-open-outline');
+        document.getElementById('input').value = '';
+        document.getElementById('output').value = '';
+        updateCounts();
+        setStatus('');
+    }
+
+    function setStatus(msg, isError = false) {
+        const el = document.getElementById('statusText');
+        el.textContent = msg;
+        el.style.color = isError ? '#ef4444' : 'var(--primary)';
+    }
+
+    function togglePassword(id, btn) {
+        const el = document.getElementById(id);
+        if (el.type === 'password') {
+            el.type = 'text';
+            btn.querySelector('iconify-icon, svg')?.remove();
+            btn.innerHTML = '<Icon name="material-symbols:visibility-off-outline" class="text-lg" />';
+            btn.setAttribute('title', '隐藏');
+        } else {
+            el.type = 'password';
+            btn.setAttribute('title', '显示');
+        }
+    }
+
+    // 密码强度评估
+    function evalStrength(pwd) {
+        if (!pwd) return '—';
+        let score = 0;
+        if (pwd.length >= 8) score++;
+        if (pwd.length >= 12) score++;
+        if (/[a-z]/.test(pwd) && /[A-Z]/.test(pwd)) score++;
+        if (/\d/.test(pwd)) score++;
+        if (/[^A-Za-z0-9]/.test(pwd)) score++;
+        const labels = ['很弱', '弱', '一般', '较强', '强', '很强'];
+        const colors = ['#ef4444', '#f97316', '#eab308', '#84cc16', '#22c55e', '#16a34a'];
+        const idx = Math.min(score, 5);
+        const el = document.getElementById('strength');
+        el.textContent = labels[idx];
+        el.style.color = colors[idx];
+    }
+
+    // 工具函数
+    function bufToBase64(buf) {
+        const bytes = new Uint8Array(buf);
+        let bin = '';
+        for (let i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+        return btoa(bin);
+    }
+    function base64ToBuf(b64) {
+        const bin = atob(b64.replace(/\s+/g, ''));
+        const bytes = new Uint8Array(bin.length);
+        for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+        return bytes.buffer;
+    }
+    function bufToHex(buf) {
+        return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join(' ');
+    }
+
+    // PBKDF2 派生密钥
+    async function deriveKey(password, salt, keyLength, iterations) {
+        const enc = new TextEncoder();
+        const baseKey = await crypto.subtle.importKey(
+            'raw', enc.encode(password), { name: 'PBKDF2' }, false, ['deriveKey']
+        );
+        return await crypto.subtle.deriveKey(
+            { name: 'PBKDF2', salt, iterations, hash: 'SHA-256' },
+            baseKey,
+            { name: 'AES-GCM', length: keyLength },
+            false,
+            ['encrypt', 'decrypt']
+        );
+    }
+
+    async function doAction() {
+        const pwd = document.getElementById('password').value;
+        const input = document.getElementById('input').value;
+        const keyLength = parseInt(document.getElementById('keyLength').value);
+        const iterations = parseInt(document.getElementById('iterations').value);
+
+        if (!pwd) { setStatus('请输入密码', true); return; }
+        if (!input) { setStatus('请输入内容', true); return; }
+
+        try {
+            if (mode === 'encrypt') {
+                // 生成随机盐和 IV
+                const salt = crypto.getRandomValues(new Uint8Array(16));
+                const iv = crypto.getRandomValues(new Uint8Array(12));
+                const key = await deriveKey(pwd, salt, keyLength, iterations);
+                const enc = new TextEncoder();
+                const ciphertext = await crypto.subtle.encrypt(
+                    { name: 'AES-GCM', iv },
+                    key,
+                    enc.encode(input)
+                );
+                // 拼接 salt + iv + ciphertext
+                const combined = new Uint8Array(salt.length + iv.length + ciphertext.byteLength);
+                combined.set(salt, 0);
+                combined.set(iv, salt.length);
+                combined.set(new Uint8Array(ciphertext), salt.length + iv.length);
+                const b64 = bufToBase64(combined.buffer);
+                document.getElementById('output').value = b64;
+                setStatus('加密成功');
+                showDetail({
+                    '算法': `AES-${keyLength}-GCM`,
+                    'KDF': `PBKDF2-SHA256 (${iterations.toLocaleString()} 次)`,
+                    '盐 (Salt)': bufToHex(salt),
+                    'IV': bufToHex(iv),
+                    '密文字节': ciphertext.byteLength,
+                    '总输出字节': combined.length,
+                });
+            } else {
+                const combined = new Uint8Array(base64ToBuf(input));
+                if (combined.length < 29) throw new Error('密文长度不足（至少 29 字节）');
+                const salt = combined.slice(0, 16);
+                const iv = combined.slice(16, 28);
+                const ct = combined.slice(28);
+                const key = await deriveKey(pwd, salt, keyLength, iterations);
+                const plainBuf = await crypto.subtle.decrypt(
+                    { name: 'AES-GCM', iv },
+                    key,
+                    ct
+                );
+                const plain = new TextDecoder('utf-8').decode(plainBuf);
+                document.getElementById('output').value = plain;
+                setStatus('解密成功');
+                showDetail({
+                    '算法': `AES-${keyLength}-GCM`,
+                    'KDF': `PBKDF2-SHA256 (${iterations.toLocaleString()} 次)`,
+                    '盐 (Salt)': bufToHex(salt),
+                    'IV': bufToHex(iv),
+                    '密文字节': ct.length,
+                    '明文字节': plainBuf.byteLength,
+                });
+            }
+            updateCounts();
+        } catch (e) {
+            setStatus((mode === 'encrypt' ? '加密' : '解密') + '失败：' + (e.message || '密码错误或密文损坏'), true);
+        }
+    }
+
+    function showDetail(info) {
+        const el = document.getElementById('detailInfo');
+        el.innerHTML = Object.entries(info).map(([k, v]) =>
+            `<div><span class="text-30">${k}：</span><span class="text-75 break-all">${v}</span></div>`
+        ).join('');
+    }
+
+    function generatePassword() {
+        const charset = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%^&*';
+        const len = 16;
+        const arr = new Uint32Array(len);
+        crypto.getRandomValues(arr);
+        let pwd = '';
+        for (let i = 0; i < len; i++) pwd += charset[arr[i] % charset.length];
+        document.getElementById('password').value = pwd;
+        evalStrength(pwd);
+        setStatus('已生成 ' + len + ' 位随机密码');
+    }
+
+    async function copyOutput() {
+        const v = document.getElementById('output').value;
+        if (!v) { setStatus('输出为空', true); return; }
+        try { await navigator.clipboard.writeText(v); setStatus('已复制到剪贴板'); }
+        catch (e) {
+            document.getElementById('output').select();
+            document.execCommand('copy');
+            setStatus('已复制');
+        }
+    }
+    function swapOutput() {
+        const v = document.getElementById('output').value;
+        if (!v) { setStatus('输出为空', true); return; }
+        document.getElementById('input').value = v;
+        document.getElementById('output').value = '';
+        updateCounts();
+        setStatus('');
+    }
+
+    function updateCounts() {
+        const v = document.getElementById('input').value;
+        document.getElementById('inputCount').textContent = v.length;
+        document.getElementById('inputBytes').textContent = new TextEncoder().encode(v).length;
+        document.getElementById('outputCount').textContent = document.getElementById('output').value.length;
+    }
+
+    document.getElementById('input').addEventListener('input', updateCounts);
+    document.getElementById('password').addEventListener('input', e => evalStrength(e.target.value));
+    updateCounts();
+</script>
+
+</MainGridLayout>

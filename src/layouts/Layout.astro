@@ -347,12 +347,53 @@ function showBanner() {
 	banner.classList.remove('opacity-0', 'scale-105');
 }
 
+function loadRandomBanner() {
+	if (!siteConfig.banner.enable) return;
+	const randomConfig = siteConfig.banner.random;
+	if (!randomConfig?.enable) return;
+
+	const bannerDiv = document.getElementById('banner');
+	if (!bannerDiv) return;
+	const imgEl = bannerDiv.querySelector('img');
+	if (!imgEl) return;
+
+	// API 列表：主 API + 备用 API，按顺序尝试，全部失败则保持默认图片
+	const apis = [
+		randomConfig.api || 'https://uapis.cn/api/v1/random/image?category=acg&type=pc',
+		'https://api.elaina.cat/random/',
+	];
+
+	(async () => {
+		for (const apiUrl of apis) {
+			if (!apiUrl) continue;
+			// 加时间戳避免缓存，确保每次拿到新图
+			const url = apiUrl + (apiUrl.includes('?') ? '&' : '?') + '_=' + Date.now();
+
+			const success = await new Promise<boolean>((resolve) => {
+				const testImg = new Image();
+				let done = false;
+				testImg.onload = () => { if (!done) { done = true; resolve(true); } };
+				testImg.onerror = () => { if (!done) { done = true; resolve(false); } };
+				setTimeout(() => { if (!done) { done = true; resolve(false); } }, 6000);
+				testImg.src = url;
+			});
+
+			if (success) {
+				imgEl.src = url;
+				return;
+			}
+		}
+		// 全部失败则保持默认图片（HTML 里已设置 src）
+	})();
+}
+
 function init() {
 	// disableAnimation()()		// TODO
 	loadTheme();
 	loadHue();
 	initCustomScrollbar();
 	showBanner();
+	loadRandomBanner();
 }
 
 /* Load settings when entering the site */

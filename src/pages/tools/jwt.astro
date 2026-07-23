@@ -1,0 +1,323 @@
+---
+import MainGridLayout from "@layouts/MainGridLayout.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<MainGridLayout title="JWT 解码器" description="JSON Web Token 在线解码查看器">
+
+<div class="card-base p-6 onload-animation">
+    <div class="flex items-center gap-3 mb-6">
+        <Icon name="material-symbols:key-vertical" class="text-2xl text-[var(--primary)]" />
+        <h1 class="text-2xl font-bold text-90">JWT 解码器</h1>
+    </div>
+
+    <p class="text-75 mb-6">解析 JWT（JSON Web Token）的 Header 和 Payload，并自动识别常见声明（exp、iat、nbf 等）的时间含义。纯客户端解析，<strong>不验证签名</strong>。</p>
+
+    <!-- 输入区 -->
+    <div class="mb-5">
+        <div class="flex items-center justify-between mb-2">
+            <label class="text-sm font-semibold text-75">JWT 字符串</label>
+            <div class="flex gap-2">
+                <button class="btn-soft text-xs" onclick="pasteInput()">粘贴</button>
+                <button class="btn-soft text-xs" onclick="clearAll()">清空</button>
+                <button class="btn-soft text-xs" onclick="loadSample()">示例</button>
+            </div>
+        </div>
+        <textarea id="input" rows="4" placeholder="粘贴以 eyJ... 开头的 JWT 字符串..." class="textarea-field font-mono text-sm" style="word-break: break-all; white-space: pre-wrap;"></textarea>
+        <div class="text-xs text-30 mt-1 flex justify-between">
+            <span>字符数：<span id="inputCount">0</span> · 段数：<span id="segCount">0</span>/3</span>
+            <span id="statusText" class="text-[var(--primary)]"></span>
+        </div>
+    </div>
+
+    <!-- 解析结果 -->
+    <div id="results" class="space-y-4">
+        <!-- Header -->
+        <div>
+            <div class="flex items-center justify-between mb-1.5">
+                <div class="flex items-center gap-2">
+                    <span class="seg-badge" style="background: #f97316;">1</span>
+                    <span class="text-sm font-semibold text-75">Header（头部）</span>
+                    <span class="text-xs text-30" id="headerAlg"></span>
+                </div>
+                <button class="btn-soft text-xs" onclick="copyJson('header')">复制</button>
+            </div>
+            <pre id="header" class="json-block"></pre>
+        </div>
+
+        <!-- Payload -->
+        <div>
+            <div class="flex items-center justify-between mb-1.5">
+                <div class="flex items-center gap-2">
+                    <span class="seg-badge" style="background: #8b5cf6;">2</span>
+                    <span class="text-sm font-semibold text-75">Payload（载荷）</span>
+                </div>
+                <button class="btn-soft text-xs" onclick="copyJson('payload')">复制</button>
+            </div>
+            <pre id="payload" class="json-block"></pre>
+        </div>
+
+        <!-- Signature -->
+        <div>
+            <div class="flex items-center justify-between mb-1.5">
+                <div class="flex items-center gap-2">
+                    <span class="seg-badge" style="background: #ec4899;">3</span>
+                    <span class="text-sm font-semibold text-75">Signature（签名）</span>
+                    <span class="text-xs text-30" id="sigInfo"></span>
+                </div>
+            </div>
+            <div class="json-block" style="white-space: pre-wrap; word-break: break-all;">
+                <span class="text-50 text-xs">⚠ 签名部分不进行验证，仅显示原始 Base64Url 字符串：</span>
+                <div id="signature" class="font-mono text-sm mt-2 text-75"></div>
+            </div>
+        </div>
+
+        <!-- 时间声明解析 -->
+        <div id="timeClaims" class="hidden">
+            <div class="flex items-center gap-2 mb-1.5">
+                <Icon name="material-symbols:schedule-outline" class="text-base text-[var(--primary)]" />
+                <span class="text-sm font-semibold text-75">时间声明解析</span>
+            </div>
+            <div class="card-base p-3 space-y-1.5 text-sm" id="timeClaimsContent"></div>
+        </div>
+    </div>
+
+    <!-- 提示 -->
+    <div class="mt-6 p-3 rounded-lg bg-[var(--enter-btn-bg)] text-xs text-50 leading-relaxed">
+        <p><strong class="text-75">说明：</strong></p>
+        <ul class="list-disc ml-5 mt-1 space-y-0.5">
+            <li>JWT 由三段 Base64Url 字符串以 <code>.</code> 分隔组成：<code>header.payload.signature</code>。</li>
+            <li>本工具仅<strong>解码并展示</strong> Header 与 Payload 的 JSON 内容，不会验证签名。</li>
+            <li>自动识别标准声明：<code>exp</code>（过期）、<code>iat</code>（签发）、<code>nbf</code>（生效）、<code>auth_time</code>，并显示可读时间。</li>
+            <li><strong>注意：</strong>JWT 的 Payload 默认未加密，任何人都能解码查看，请勿在 JWT 中放入敏感信息。</li>
+        </ul>
+    </div>
+</div>
+
+<style>
+    .textarea-field {
+        background: var(--enter-btn-bg);
+        border: 1px solid transparent;
+        border-radius: 0.75rem;
+        padding: 0.75rem;
+        font-size: 0.875rem;
+        width: 100%;
+        resize: vertical;
+        transition: border-color 0.2s;
+        box-sizing: border-box;
+        min-height: 100px;
+        color: var(--text-90);
+    }
+    .textarea-field:focus { outline: none; border-color: var(--primary); }
+    .json-block {
+        background: var(--enter-btn-bg);
+        border-radius: 0.5rem;
+        padding: 0.75rem;
+        font-size: 0.85rem;
+        font-family: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        color: var(--text-90);
+        overflow-x: auto;
+        line-height: 1.5;
+        white-space: pre;
+        min-height: 40px;
+    }
+    .json-block:empty::before {
+        content: '（待解析）';
+        color: var(--text-30);
+        font-size: 0.8rem;
+    }
+    .seg-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        color: white;
+        font-size: 0.75rem;
+        font-weight: 700;
+    }
+    .btn-soft {
+        background: var(--enter-btn-bg);
+        color: var(--text-75);
+        border: none;
+        cursor: pointer;
+        border-radius: 0.375rem;
+        padding: 0.25rem 0.6rem;
+        transition: all 0.2s;
+    }
+    .btn-soft:hover { color: var(--primary); }
+    .json-key { color: #60a5fa; }
+    .json-string { color: #34d399; }
+    .json-number { color: #fbbf24; }
+    .json-bool { color: #f472b6; }
+    .json-null { color: #94a3b8; }
+</style>
+
+<script is:inline>
+    const input = document.getElementById('input');
+
+    function setStatus(msg, isError = false) {
+        const el = document.getElementById('statusText');
+        el.textContent = msg;
+        el.style.color = isError ? '#ef4444' : 'var(--primary)';
+    }
+
+    // Base64Url -> Base64 -> 解码
+    function b64UrlDecode(str) {
+        let s = str.replace(/-/g, '+').replace(/_/g, '/');
+        // 补齐 padding
+        while (s.length % 4) s += '=';
+        const bin = atob(s);
+        const bytes = new Uint8Array(bin.length);
+        for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+        return new TextDecoder('utf-8').decode(bytes);
+    }
+
+    function syntaxHighlight(json) {
+        json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+\.?\d*([eE][+\-]?\d+)?)/g, function(match) {
+            let cls = 'json-number';
+            if (/^"/.test(match)) {
+                cls = /:$/.test(match) ? 'json-key' : 'json-string';
+            } else if (/true|false/.test(match)) {
+                cls = 'json-bool';
+            } else if (/null/.test(match)) {
+                cls = 'json-null';
+            }
+            return '<span class="' + cls + '">' + match + '</span>';
+        });
+    }
+
+    function formatTimestamp(ts) {
+        const d = new Date(ts * 1000);
+        if (isNaN(d.getTime())) return '无效时间';
+        const now = new Date();
+        const diff = d - now;
+        const absDiff = Math.abs(diff);
+        const days = Math.floor(absDiff / 86400000);
+        const hours = Math.floor((absDiff % 86400000) / 3600000);
+        let relative;
+        if (diff > 0) {
+            if (days > 0) relative = `（还剩 ${days} 天 ${hours} 小时）`;
+            else if (hours > 0) relative = `（还剩 ${hours} 小时）`;
+            else relative = `（即将到来）`;
+        } else {
+            if (days > 0) relative = `（已过期 ${days} 天）`;
+            else if (hours > 0) relative = `（已过期 ${hours} 小时）`;
+            else relative = `（刚刚过期）`;
+        }
+        return `${d.toLocaleString('zh-CN')} ${relative}`;
+    }
+
+    function parse() {
+        const v = input.value.trim();
+        document.getElementById('header').textContent = '';
+        document.getElementById('payload').textContent = '';
+        document.getElementById('signature').textContent = '';
+        document.getElementById('headerAlg').textContent = '';
+        document.getElementById('sigInfo').textContent = '';
+        document.getElementById('timeClaims').classList.add('hidden');
+        document.getElementById('segCount').textContent = v ? v.split('.').length : 0;
+
+        if (!v) { setStatus(''); return; }
+
+        const parts = v.split('.');
+        if (parts.length !== 3) {
+            setStatus('JWT 格式错误：应为 3 段，实际 ' + parts.length + ' 段', true);
+            return;
+        }
+
+        try {
+            // Header
+            const header = JSON.parse(b64UrlDecode(parts[0]));
+            document.getElementById('header').innerHTML = syntaxHighlight(JSON.stringify(header, null, 2));
+            document.getElementById('headerAlg').textContent = `alg: ${header.alg || '?'} · typ: ${header.typ || '?'}`;
+
+            // Payload
+            const payload = JSON.parse(b64UrlDecode(parts[1]));
+            document.getElementById('payload').innerHTML = syntaxHighlight(JSON.stringify(payload, null, 2));
+
+            // Signature
+            document.getElementById('signature').textContent = parts[2] || '(空)';
+            document.getElementById('sigInfo').textContent = `${parts[2].length} 字符`;
+
+            // 时间声明
+            const timeClaims = [];
+            const claimDefs = [
+                ['iat', '签发时间 (Issued At)'],
+                ['exp', '过期时间 (Expiration)'],
+                ['nbf', '生效时间 (Not Before)'],
+                ['auth_time', '认证时间 (Auth Time)'],
+            ];
+            claimDefs.forEach(([key, label]) => {
+                if (typeof payload[key] === 'number') {
+                    timeClaims.push({ key, label, value: payload[key] });
+                }
+            });
+
+            const tcEl = document.getElementById('timeClaims');
+            const tcContent = document.getElementById('timeClaimsContent');
+            if (timeClaims.length > 0) {
+                tcEl.classList.remove('hidden');
+                tcContent.innerHTML = timeClaims.map(c => `
+                    <div class="flex items-center justify-between gap-3 flex-wrap">
+                        <div>
+                            <code class="text-[var(--primary)] font-mono">${c.key}</code>
+                            <span class="text-50 text-xs ml-2">${c.label}</span>
+                        </div>
+                        <div class="text-75 text-xs font-mono">${c.value}</div>
+                        <div class="text-75 text-xs w-full">${formatTimestamp(c.value)}</div>
+                    </div>
+                `).join('');
+            }
+
+            setStatus('✓ 解析成功');
+        } catch (e) {
+            setStatus('解析失败：' + e.message, true);
+        }
+    }
+
+    async function pasteInput() {
+        try {
+            input.value = await navigator.clipboard.readText();
+            parse();
+        } catch (e) {
+            setStatus('粘贴失败：请手动粘贴', true);
+        }
+    }
+    function clearAll() {
+        input.value = '';
+        parse();
+    }
+    function loadSample() {
+        // 示例 JWT（来自 jwt.io 的标准示例）
+        input.value = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMiwiZXhwIjoxNTE2MjQyNjIyfQ.NHVaYe26MbtOYhSKkoKYdFVomg4i8ZJd8_-RU8VNbftc4TSMb4bXP3l3YlNWACwyXPGffz5aXHc6lty1Y2t4SWRqGteragsVdZufDn5BwnJpduJgncilCf5T9GRqt0kupN3YWqVwnnqDDF8Y3qSrWCzd-lmlj0v4LT0tUq91Mnjw2v4kkwg0tjx7Mcxpa6NDEzJ7sljmdYldY6HsZKOOKtjxCMj9YQQc5VSCPEp7YUqtxnG0lDy7Y0JFhfJZ9oZDI2rw&aW1wb3J0YW50';
+        parse();
+    }
+    async function copyJson(id) {
+        const el = document.getElementById(id);
+        const text = el.textContent;
+        if (!text) { setStatus('内容为空', true); return; }
+        try {
+            await navigator.clipboard.writeText(text);
+            setStatus('已复制');
+        } catch (e) {
+            const range = document.createRange();
+            range.selectNode(el);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+            document.execCommand('copy');
+            window.getSelection().removeAllRanges();
+            setStatus('已复制');
+        }
+    }
+
+    function updateCount() {
+        document.getElementById('inputCount').textContent = input.value.length;
+    }
+    input.addEventListener('input', () => { updateCount(); parse(); });
+    updateCount();
+</script>
+
+</MainGridLayout>

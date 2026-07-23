@@ -1,0 +1,297 @@
+---
+import MainGridLayout from "@layouts/MainGridLayout.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<MainGridLayout title="编码解码工具" description="Base64 / URL / Hex / HTML 实体 编码解码">
+
+<div class="card-base p-6 onload-animation">
+    <div class="flex items-center gap-3 mb-6">
+        <Icon name="material-symbols:code-rounded" class="text-2xl text-[var(--primary)]" />
+        <h1 class="text-2xl font-bold text-90">编码解码工具</h1>
+    </div>
+
+    <p class="text-75 mb-6">支持 Base64、URL、Hex（十六进制）、HTML 实体 四种常见格式的相互转换，全部在浏览器本地完成。</p>
+
+    <!-- Tab 切换 -->
+    <div class="flex flex-wrap gap-2 mb-5" id="tabs">
+        <button class="tab-btn active" data-tab="base64">Base64</button>
+        <button class="tab-btn" data-tab="url">URL 编码</button>
+        <button class="tab-btn" data-tab="hex">Hex 十六进制</button>
+        <button class="tab-btn" data-tab="html">HTML 实体</button>
+    </div>
+
+    <!-- 输入区 -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div>
+            <div class="flex items-center justify-between mb-2">
+                <label class="text-sm font-semibold text-75">输入</label>
+                <div class="flex gap-2">
+                    <button class="btn-soft text-xs" onclick="pasteInput()">粘贴</button>
+                    <button class="btn-soft text-xs" onclick="clearInput()">清空</button>
+                </div>
+            </div>
+            <textarea id="input" rows="12" placeholder="在此输入要编码或解码的内容..." class="textarea-field font-mono text-sm"></textarea>
+            <div class="text-xs text-30 mt-1 flex justify-between">
+                <span>字符数：<span id="inputCount">0</span></span>
+                <span>UTF-8 字节：<span id="inputBytes">0</span></span>
+            </div>
+        </div>
+
+        <div>
+            <div class="flex items-center justify-between mb-2">
+                <label class="text-sm font-semibold text-75">输出</label>
+                <div class="flex gap-2">
+                    <button class="btn-soft text-xs" onclick="copyOutput()">复制</button>
+                    <button class="btn-soft text-xs" onclick="swapOutput()">用作输入 ↑</button>
+                </div>
+            </div>
+            <textarea id="output" rows="12" readonly placeholder="结果将在此显示..." class="textarea-field font-mono text-sm"></textarea>
+            <div class="text-xs text-30 mt-1 flex justify-between">
+                <span>字符数：<span id="outputCount">0</span></span>
+                <span id="statusText" class="text-[var(--primary)]"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 操作按钮 -->
+    <div class="flex flex-wrap gap-3 mt-5">
+        <button class="btn-primary flex items-center gap-2" onclick="doEncode()">
+            <Icon name="material-symbols:arrow-forward-rounded" class="text-lg" />
+            编码 →
+        </button>
+        <button class="btn-primary flex items-center gap-2" onclick="doDecode()">
+            <Icon name="material-symbols:arrow-back-rounded" class="text-lg" />
+            ← 解码
+        </button>
+    </div>
+
+    <!-- 提示 -->
+    <div class="mt-6 p-3 rounded-lg bg-[var(--enter-btn-bg)] text-xs text-50 leading-relaxed">
+        <p><strong class="text-75">提示：</strong></p>
+        <ul class="list-disc ml-5 mt-1 space-y-0.5">
+            <li>Base64 解码支持自动去除空格换行；编码使用 UTF-8。</li>
+            <li>URL 编码使用 <code>encodeURIComponent</code>，对完整 URL 请使用 decodeURIComponent。</li>
+            <li>Hex 编码以字节为单位，输出小写；解码支持带空格/0x 前缀/逗号分隔。</li>
+            <li>HTML 实体解码使用浏览器原生 DOM 解析器，支持命名实体与数字实体。</li>
+        </ul>
+    </div>
+</div>
+
+<style>
+    .textarea-field {
+        background: var(--enter-btn-bg);
+        border: 1px solid transparent;
+        border-radius: 0.75rem;
+        padding: 0.75rem;
+        font-size: 0.875rem;
+        width: 100%;
+        resize: vertical;
+        transition: border-color 0.2s;
+        box-sizing: border-box;
+        min-height: 240px;
+    }
+    .textarea-field:focus {
+        outline: none;
+        border-color: var(--primary);
+    }
+    .tab-btn {
+        padding: 0.4rem 1rem;
+        border-radius: 0.5rem;
+        font-size: 0.85rem;
+        font-weight: 500;
+        background: var(--enter-btn-bg);
+        color: var(--text-75);
+        cursor: pointer;
+        transition: all 0.2s;
+        border: 1px solid transparent;
+    }
+    .tab-btn:hover { color: var(--primary); }
+    .tab-btn.active {
+        background: var(--primary);
+        color: white;
+    }
+    .btn-soft {
+        background: var(--enter-btn-bg);
+        color: var(--text-75);
+        border: none;
+        cursor: pointer;
+        border-radius: 0.375rem;
+        padding: 0.25rem 0.6rem;
+        transition: all 0.2s;
+    }
+    .btn-soft:hover { color: var(--primary); background: var(--enter-btn-bg-hover); }
+    .btn-primary {
+        background: var(--primary);
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 0.5rem;
+        padding: 0.5rem 1.1rem;
+        font-weight: 500;
+        font-size: 0.875rem;
+        transition: all 0.2s;
+    }
+    .btn-primary:hover { filter: brightness(1.1); }
+    .btn-primary:active { transform: scale(0.97); }
+</style>
+
+<script is:inline>
+    let currentTab = 'base64';
+
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentTab = btn.dataset.tab;
+            updateCounts();
+        });
+    });
+
+    const input = document.getElementById('input');
+    const output = document.getElementById('output');
+
+    function setStatus(msg, isError = false) {
+        const el = document.getElementById('statusText');
+        el.textContent = msg;
+        el.style.color = isError ? '#ef4444' : 'var(--primary)';
+    }
+
+    function utf8ToBytes(str) {
+        return new TextEncoder().encode(str);
+    }
+    function bytesToUtf8(bytes) {
+        return new TextDecoder('utf-8', { fatal: false }).decode(bytes);
+    }
+
+    // Base64
+    function base64Encode(str) {
+        const bytes = utf8ToBytes(str);
+        let bin = '';
+        bytes.forEach(b => bin += String.fromCharCode(b));
+        return btoa(bin);
+    }
+    function base64Decode(str) {
+        const cleaned = str.replace(/\s+/g, '');
+        const bin = atob(cleaned);
+        const bytes = new Uint8Array(bin.length);
+        for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+        return bytesToUtf8(bytes);
+    }
+
+    // URL
+    function urlEncode(str) { return encodeURIComponent(str); }
+    function urlDecode(str) { return decodeURIComponent(str.replace(/\+/g, ' ')); }
+
+    // Hex
+    function hexEncode(str) {
+        const bytes = utf8ToBytes(str);
+        return Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join(' ');
+    }
+    function hexDecode(str) {
+        const cleaned = str.replace(/0x/gi, '').replace(/[\s,;]+/g, '');
+        if (!/^[0-9a-fA-F]*$/.test(cleaned) || cleaned.length % 2 !== 0) {
+            throw new Error('无效的十六进制字符串');
+        }
+        const bytes = new Uint8Array(cleaned.length / 2);
+        for (let i = 0; i < bytes.length; i++) {
+            bytes[i] = parseInt(cleaned.substr(i * 2, 2), 16);
+        }
+        return bytesToUtf8(bytes);
+    }
+
+    // HTML 实体
+    function htmlEncode(str) {
+        const div = document.createElement('div');
+        div.textContent = str;
+        return div.innerHTML;
+    }
+    function htmlDecode(str) {
+        const div = document.createElement('div');
+        div.innerHTML = str;
+        return div.textContent || '';
+    }
+
+    function doEncode() {
+        const val = input.value;
+        if (!val) { setStatus('请输入内容', true); return; }
+        try {
+            let result;
+            switch (currentTab) {
+                case 'base64': result = base64Encode(val); break;
+                case 'url': result = urlEncode(val); break;
+                case 'hex': result = hexEncode(val); break;
+                case 'html': result = htmlEncode(val); break;
+            }
+            output.value = result;
+            setStatus('编码成功');
+            updateCounts();
+        } catch (e) {
+            setStatus('编码失败：' + e.message, true);
+        }
+    }
+
+    function doDecode() {
+        const val = input.value;
+        if (!val) { setStatus('请输入内容', true); return; }
+        try {
+            let result;
+            switch (currentTab) {
+                case 'base64': result = base64Decode(val); break;
+                case 'url': result = urlDecode(val); break;
+                case 'hex': result = hexDecode(val); break;
+                case 'html': result = htmlDecode(val); break;
+            }
+            output.value = result;
+            setStatus('解码成功');
+            updateCounts();
+        } catch (e) {
+            setStatus('解码失败：' + e.message, true);
+        }
+    }
+
+    async function pasteInput() {
+        try {
+            input.value = await navigator.clipboard.readText();
+            updateCounts();
+        } catch (e) {
+            setStatus('粘贴失败：请手动粘贴', true);
+        }
+    }
+    function clearInput() {
+        input.value = '';
+        output.value = '';
+        updateCounts();
+        setStatus('');
+    }
+    async function copyOutput() {
+        if (!output.value) { setStatus('输出为空', true); return; }
+        try {
+            await navigator.clipboard.writeText(output.value);
+            setStatus('已复制到剪贴板');
+        } catch (e) {
+            output.select();
+            document.execCommand('copy');
+            setStatus('已复制');
+        }
+    }
+    function swapOutput() {
+        if (!output.value) { setStatus('输出为空', true); return; }
+        input.value = output.value;
+        output.value = '';
+        updateCounts();
+        setStatus('');
+    }
+
+    function updateCounts() {
+        const v = input.value;
+        document.getElementById('inputCount').textContent = v.length;
+        document.getElementById('inputBytes').textContent = utf8ToBytes(v).length;
+        document.getElementById('outputCount').textContent = output.value.length;
+    }
+
+    input.addEventListener('input', updateCounts);
+    updateCounts();
+</script>
+
+</MainGridLayout>

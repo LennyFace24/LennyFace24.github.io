@@ -1,0 +1,425 @@
+---
+import MainGridLayout from "@layouts/MainGridLayout.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<MainGridLayout title="哈希计算器" description="MD5 / SHA-1 / SHA-256 / SHA-384 / SHA-512 哈希计算">
+
+<div class="card-base p-6 onload-animation">
+    <div class="flex items-center gap-3 mb-6">
+        <Icon name="material-symbols:hash-rounded" class="text-2xl text-[var(--primary)]" />
+        <h1 class="text-2xl font-bold text-90">哈希计算器</h1>
+    </div>
+
+    <p class="text-75 mb-6">支持 MD5、SHA-1、SHA-256、SHA-384、SHA-512 五种哈希算法。SHA 系列使用浏览器原生 Web Crypto API，MD5 为本地实现，全部在浏览器完成。</p>
+
+    <!-- 输入区 -->
+    <div class="mb-5">
+        <div class="flex items-center justify-between mb-2">
+            <label class="text-sm font-semibold text-75">输入内容</label>
+            <div class="flex gap-2">
+                <button class="btn-soft text-xs" onclick="pasteInput()">粘贴</button>
+                <button class="btn-soft text-xs" onclick="clearAll()">清空</button>
+                <button class="btn-soft text-xs" onclick="loadFile()">文件哈希...</button>
+                <input type="file" id="fileInput" class="hidden" onchange="handleFile(event)">
+            </div>
+        </div>
+        <textarea id="input" rows="6" placeholder="输入要计算哈希的文本，或点击「文件哈希」选择文件..." class="textarea-field font-mono text-sm"></textarea>
+        <div class="text-xs text-30 mt-1 flex justify-between">
+            <span id="fileName"></span>
+            <span>字符数：<span id="inputCount">0</span> · UTF-8 字节：<span id="inputBytes">0</span></span>
+        </div>
+    </div>
+
+    <!-- 选项 -->
+    <div class="flex flex-wrap items-center gap-4 mb-5 p-3 rounded-lg bg-[var(--enter-btn-bg)]">
+        <label class="flex items-center gap-2 text-sm text-75 cursor-pointer">
+            <input type="checkbox" id="uppercase" class="scale-90">
+            大写输出
+        </label>
+        <label class="flex items-center gap-2 text-sm text-75 cursor-pointer">
+            <input type="checkbox" id="autoCalc" checked class="scale-90">
+            自动计算（输入变化时）
+        </label>
+        <button class="btn-primary text-sm ml-auto" onclick="calcAll()">
+            <span class="flex items-center gap-2">
+                <Icon name="material-symbols:calculate-rounded" class="text-lg" />
+                立即计算
+            </span>
+        </button>
+    </div>
+
+    <!-- 结果区 -->
+    <div class="space-y-3" id="results">
+        <div class="result-item">
+            <div class="flex items-center justify-between mb-1">
+                <div class="flex items-center gap-2">
+                    <span class="hash-label">MD5</span>
+                    <span class="text-xs text-30">128 位 / 16 字节</span>
+                </div>
+                <button class="btn-soft text-xs" onclick="copyResult('md5')">复制</button>
+            </div>
+            <input type="text" id="md5" readonly class="result-field font-mono text-sm">
+        </div>
+        <div class="result-item">
+            <div class="flex items-center justify-between mb-1">
+                <div class="flex items-center gap-2">
+                    <span class="hash-label">SHA-1</span>
+                    <span class="text-xs text-30">160 位 / 20 字节</span>
+                </div>
+                <button class="btn-soft text-xs" onclick="copyResult('sha1')">复制</button>
+            </div>
+            <input type="text" id="sha1" readonly class="result-field font-mono text-sm">
+        </div>
+        <div class="result-item">
+            <div class="flex items-center justify-between mb-1">
+                <div class="flex items-center gap-2">
+                    <span class="hash-label">SHA-256</span>
+                    <span class="text-xs text-30">256 位 / 32 字节</span>
+                </div>
+                <button class="btn-soft text-xs" onclick="copyResult('sha256')">复制</button>
+            </div>
+            <input type="text" id="sha256" readonly class="result-field font-mono text-sm">
+        </div>
+        <div class="result-item">
+            <div class="flex items-center justify-between mb-1">
+                <div class="flex items-center gap-2">
+                    <span class="hash-label">SHA-384</span>
+                    <span class="text-xs text-30">384 位 / 48 字节</span>
+                </div>
+                <button class="btn-soft text-xs" onclick="copyResult('sha384')">复制</button>
+            </div>
+            <input type="text" id="sha384" readonly class="result-field font-mono text-sm">
+        </div>
+        <div class="result-item">
+            <div class="flex items-center justify-between mb-1">
+                <div class="flex items-center gap-2">
+                    <span class="hash-label">SHA-512</span>
+                    <span class="text-xs text-30">512 位 / 64 字节</span>
+                </div>
+                <button class="btn-soft text-xs" onclick="copyResult('sha512')">复制</button>
+            </div>
+            <input type="text" id="sha512" readonly class="result-field font-mono text-sm">
+        </div>
+    </div>
+
+    <div class="mt-4 text-xs text-30" id="status"></div>
+
+    <!-- 提示 -->
+    <div class="mt-6 p-3 rounded-lg bg-[var(--enter-btn-bg)] text-xs text-50 leading-relaxed">
+        <p><strong class="text-75">说明：</strong></p>
+        <ul class="list-disc ml-5 mt-1 space-y-0.5">
+            <li>SHA 系列哈希基于浏览器 Web Crypto API（<code>crypto.subtle.digest</code>），性能好且安全。</li>
+            <li>MD5 由于 Web Crypto 不再支持，使用纯 JS 实现，仅供校验用途，<strong>请勿用于安全场景</strong>。</li>
+            <li>文件哈希以二进制流方式读取，可处理任意类型文件。</li>
+            <li>哈希是不可逆的单向函数，无法从哈希值还原原文。</li>
+        </ul>
+    </div>
+</div>
+
+<style>
+    .textarea-field {
+        background: var(--enter-btn-bg);
+        border: 1px solid transparent;
+        border-radius: 0.75rem;
+        padding: 0.75rem;
+        font-size: 0.875rem;
+        width: 100%;
+        resize: vertical;
+        transition: border-color 0.2s;
+        box-sizing: border-box;
+        min-height: 140px;
+    }
+    .textarea-field:focus { outline: none; border-color: var(--primary); }
+    .result-item {
+        background: var(--enter-btn-bg);
+        border-radius: 0.5rem;
+        padding: 0.6rem 0.8rem;
+    }
+    .result-field {
+        background: transparent;
+        border: none;
+        width: 100%;
+        color: var(--text-90);
+        font-size: 0.85rem;
+        letter-spacing: 0.02em;
+    }
+    .result-field:focus { outline: none; }
+    .hash-label {
+        font-weight: 600;
+        font-size: 0.875rem;
+        color: var(--primary);
+        font-family: monospace;
+    }
+    .btn-soft {
+        background: transparent;
+        color: var(--text-75);
+        border: none;
+        cursor: pointer;
+        border-radius: 0.375rem;
+        padding: 0.2rem 0.5rem;
+        transition: all 0.2s;
+    }
+    .btn-soft:hover { color: var(--primary); }
+    .btn-primary {
+        background: var(--primary);
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 0.5rem;
+        padding: 0.4rem 1rem;
+        font-weight: 500;
+        transition: all 0.2s;
+    }
+    .btn-primary:hover { filter: brightness(1.1); }
+    .btn-primary:active { transform: scale(0.97); }
+    input[type="checkbox"] {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 16px;
+        height: 16px;
+        border: 2px solid var(--text-30);
+        border-radius: 3px;
+        position: relative;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    input[type="checkbox"]:checked {
+        background: var(--primary);
+        border-color: var(--primary);
+    }
+    input[type="checkbox"]:checked::after {
+        content: '✓';
+        position: absolute;
+        color: white;
+        font-size: 11px;
+        top: -2px;
+        left: 1px;
+    }
+</style>
+
+<script is:inline>
+    // ============ MD5 实现（纯 JS，RFC 1321） ============
+    const md5 = (function() {
+        function rh(n) { const s = '0123456789abcdef'; let r = ''; for (let j = 0; j < 4; j++) r += s[(n >> (j * 8 + 4)) & 0x0F] + s[(n >> (j * 8)) & 0x0F]; return r; }
+        function ad(x, y) { const l = (x & 0xFFFF) + (y & 0xFFFF); const m = (x >> 16) + (y >> 16) + (l >> 16); return (m << 16) | (l & 0xFFFF); }
+        function rl(n, c) { return (n << c) | (n >>> (32 - c)); }
+        function cm(q, a, b, x, s, t) { return ad(rl(ad(ad(a, q), ad(x, t)), s), b); }
+        function ff(a, b, c, d, x, s, t) { return cm((b & c) | (~b & d), a, b, x, s, t); }
+        function gg(a, b, c, d, x, s, t) { return cm((b & d) | (c & ~d), a, b, x, s, t); }
+        function hh(a, b, c, d, x, s, t) { return cm(b ^ c ^ d, a, b, x, s, t); }
+        function ii(a, b, c, d, x, s, t) { return cm(c ^ (b | ~d), a, b, x, s, t); }
+        function cv(s) {
+            const u = unescape(encodeURIComponent(s));
+            const n = u.length;
+            const bl = ((n + 8) >> 6) + 1;
+            const b = new Array(bl * 16).fill(0);
+            for (let i = 0; i < n; i++) b[i >> 2] |= u.charCodeAt(i) << ((i % 4) * 8);
+            b[n >> 2] |= 0x80 << ((n % 4) * 8);
+            b[bl * 16 - 2] = n * 8;
+            return b;
+        }
+        return function(input) {
+            const x = cv(input);
+            let a = 1732584193, b = -271733879, c = -1732584194, d = 271733878;
+            for (let i = 0; i < x.length; i += 16) {
+                const oa = a, ob = b, oc = c, od = d;
+                a = ff(a, b, c, d, x[i], 7, -680876936);
+                d = ff(d, a, b, c, x[i + 1], 12, -389564586);
+                c = ff(c, d, a, b, x[i + 2], 17, 606105819);
+                b = ff(b, c, d, a, x[i + 3], 22, -1044525330);
+                a = ff(a, b, c, d, x[i + 4], 7, -176418897);
+                d = ff(d, a, b, c, x[i + 5], 12, 1200080426);
+                c = ff(c, d, a, b, x[i + 6], 17, -1473231341);
+                b = ff(b, c, d, a, x[i + 7], 22, -45705983);
+                a = ff(a, b, c, d, x[i + 8], 7, 1770035416);
+                d = ff(d, a, b, c, x[i + 9], 12, -1958414417);
+                c = ff(c, d, a, b, x[i + 10], 17, -42063);
+                b = ff(b, c, d, a, x[i + 11], 22, -1990404162);
+                a = ff(a, b, c, d, x[i + 12], 7, 1804603682);
+                d = ff(d, a, b, c, x[i + 13], 12, -40341101);
+                c = ff(c, d, a, b, x[i + 14], 17, -1502002290);
+                b = ff(b, c, d, a, x[i + 15], 22, 1236535329);
+                a = gg(a, b, c, d, x[i + 1], 5, -165796510);
+                d = gg(d, a, b, c, x[i + 6], 9, -1069501632);
+                c = gg(c, d, a, b, x[i + 11], 14, 643717713);
+                b = gg(b, c, d, a, x[i], 20, -373897302);
+                a = gg(a, b, c, d, x[i + 5], 5, -701558691);
+                d = gg(d, a, b, c, x[i + 10], 9, 38016083);
+                c = gg(c, d, a, b, x[i + 15], 14, -660478335);
+                b = gg(b, c, d, a, x[i + 4], 20, -405537848);
+                a = gg(a, b, c, d, x[i + 9], 5, 568446438);
+                d = gg(d, a, b, c, x[i + 14], 9, -1019803690);
+                c = gg(c, d, a, b, x[i + 3], 14, -187363961);
+                b = gg(b, c, d, a, x[i + 8], 20, 1163531501);
+                a = gg(a, b, c, d, x[i + 13], 5, -1444681467);
+                d = gg(d, a, b, c, x[i + 2], 9, -51403784);
+                c = gg(c, d, a, b, x[i + 7], 14, 1735328473);
+                b = gg(b, c, d, a, x[i + 12], 20, -1926607734);
+                a = hh(a, b, c, d, x[i + 5], 4, -378558);
+                d = hh(d, a, b, c, x[i + 8], 11, -2022574463);
+                c = hh(c, d, a, b, x[i + 11], 16, 1839030562);
+                b = hh(b, c, d, a, x[i + 14], 23, -35309556);
+                a = hh(a, b, c, d, x[i + 1], 4, -1530992060);
+                d = hh(d, a, b, c, x[i + 4], 11, 1272893353);
+                c = hh(c, d, a, b, x[i + 7], 16, -155497632);
+                b = hh(b, c, d, a, x[i + 10], 23, -1094730640);
+                a = hh(a, b, c, d, x[i + 13], 4, 681279174);
+                d = hh(d, a, b, c, x[i], 11, -358537222);
+                c = hh(c, d, a, b, x[i + 3], 16, -722521979);
+                b = hh(b, c, d, a, x[i + 6], 23, 76029189);
+                a = hh(a, b, c, d, x[i + 9], 4, -640364487);
+                d = hh(d, a, b, c, x[i + 12], 11, -421815835);
+                c = hh(c, d, a, b, x[i + 15], 16, 530742520);
+                b = hh(b, c, d, a, x[i + 2], 23, -995338651);
+                a = ii(a, b, c, d, x[i], 6, -198630844);
+                d = ii(d, a, b, c, x[i + 7], 10, 1126891415);
+                c = ii(c, d, a, b, x[i + 14], 15, -1416354905);
+                b = ii(b, c, d, a, x[i + 5], 21, -57434055);
+                a = ii(a, b, c, d, x[i + 12], 6, 1700485571);
+                d = ii(d, a, b, c, x[i + 3], 10, -1894986606);
+                c = ii(c, d, a, b, x[i + 10], 15, -1051523);
+                b = ii(b, c, d, a, x[i + 1], 21, -2054922799);
+                a = ii(a, b, c, d, x[i + 8], 6, 1873313359);
+                d = ii(d, a, b, c, x[i + 15], 10, -30611744);
+                c = ii(c, d, a, b, x[i + 6], 15, -1560198380);
+                b = ii(b, c, d, a, x[i + 13], 21, 1309151649);
+                a = ii(a, b, c, d, x[i + 4], 6, -145523070);
+                d = ii(d, a, b, c, x[i + 11], 10, -1120210379);
+                c = ii(c, d, a, b, x[i + 2], 15, 718787259);
+                b = ii(b, c, d, a, x[i + 9], 21, -343485551);
+                a = ad(a, oa); b = ad(b, ob); c = ad(c, oc); d = ad(d, od);
+            }
+            return rh(a) + rh(b) + rh(c) + rh(d);
+        };
+    })();
+
+    // ============ SHA 系列（Web Crypto API） ============
+    async function sha(algo, data) {
+        const buf = typeof data === 'string' ? new TextEncoder().encode(data) : data;
+        const hash = await crypto.subtle.digest(algo, buf);
+        const bytes = new Uint8Array(hash);
+        return Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    function formatHex(hex) {
+        return document.getElementById('uppercase').checked ? hex.toUpperCase() : hex;
+    }
+
+    let fileBuffer = null;
+    let fileName = '';
+
+    async function calcAll() {
+        const status = document.getElementById('status');
+        const hasText = document.getElementById('input').value.length > 0;
+        const hasFile = fileBuffer !== null;
+
+        if (!hasText && !hasFile) {
+            status.textContent = '请输入文本或选择文件';
+            status.style.color = '#ef4444';
+            return;
+        }
+
+        status.textContent = '计算中...';
+        status.style.color = 'var(--primary)';
+
+        try {
+            const data = fileBuffer || document.getElementById('input').value;
+            const [md5Val, sha1Val, sha256Val, sha384Val, sha512Val] = await Promise.all([
+                Promise.resolve(typeof data === 'string' ? md5(data) : md5(bytesToStr(data))),
+                sha('SHA-1', data),
+                sha('SHA-256', data),
+                sha('SHA-384', data),
+                sha('SHA-512', data),
+            ]);
+            document.getElementById('md5').value = formatHex(md5Val);
+            document.getElementById('sha1').value = formatHex(sha1Val);
+            document.getElementById('sha256').value = formatHex(sha256Val);
+            document.getElementById('sha384').value = formatHex(sha384Val);
+            document.getElementById('sha512').value = formatHex(sha512Val);
+            status.textContent = '✓ 计算完成 · ' + new Date().toLocaleTimeString();
+            status.style.color = 'var(--primary)';
+        } catch (e) {
+            status.textContent = '计算失败：' + e.message;
+            status.style.color = '#ef4444';
+        }
+    }
+
+    function bytesToStr(bytes) {
+        // 用于 MD5 的二进制流处理：将字节视作 Latin-1 字符
+        let r = '';
+        for (let i = 0; i < bytes.length; i++) r += String.fromCharCode(bytes[i]);
+        return r;
+    }
+
+    async function pasteInput() {
+        try {
+            document.getElementById('input').value = await navigator.clipboard.readText();
+            fileBuffer = null;
+            document.getElementById('fileName').textContent = '';
+            updateCounts();
+            if (document.getElementById('autoCalc').checked) calcAll();
+        } catch (e) {}
+    }
+    function clearAll() {
+        document.getElementById('input').value = '';
+        document.getElementById('fileName').textContent = '';
+        fileBuffer = null;
+        ['md5', 'sha1', 'sha256', 'sha384', 'sha512'].forEach(id => document.getElementById(id).value = '');
+        document.getElementById('status').textContent = '';
+        updateCounts();
+    }
+    function loadFile() { document.getElementById('fileInput').click(); }
+    async function handleFile(e) {
+        const f = e.target.files[0];
+        if (!f) return;
+        fileName = f.name;
+        document.getElementById('fileName').textContent = '📁 ' + f.name + ' (' + formatSize(f.size) + ')';
+        fileBuffer = new Uint8Array(await f.arrayBuffer());
+        document.getElementById('input').value = '';
+        updateCounts();
+        if (document.getElementById('autoCalc').checked) calcAll();
+    }
+    function formatSize(b) {
+        if (b < 1024) return b + ' B';
+        if (b < 1024 * 1024) return (b / 1024).toFixed(1) + ' KB';
+        if (b < 1024 * 1024 * 1024) return (b / 1024 / 1024).toFixed(2) + ' MB';
+        return (b / 1024 / 1024 / 1024).toFixed(2) + ' GB';
+    }
+    async function copyResult(id) {
+        const v = document.getElementById(id).value;
+        if (!v) return;
+        try { await navigator.clipboard.writeText(v); } catch (e) {
+            const el = document.getElementById(id); el.select(); document.execCommand('copy');
+        }
+        const btn = event.target;
+        const orig = btn.textContent;
+        btn.textContent = '已复制 ✓';
+        setTimeout(() => btn.textContent = orig, 1200);
+    }
+
+    function updateCounts() {
+        const v = document.getElementById('input').value;
+        document.getElementById('inputCount').textContent = v.length;
+        document.getElementById('inputBytes').textContent = new TextEncoder().encode(v).length;
+    }
+
+    let debounceTimer;
+    document.getElementById('input').addEventListener('input', () => {
+        updateCounts();
+        if (fileBuffer) {
+            fileBuffer = null;
+            document.getElementById('fileName').textContent = '';
+        }
+        if (document.getElementById('autoCalc').checked) {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(calcAll, 300);
+        }
+    });
+    document.getElementById('uppercase').addEventListener('change', () => {
+        if (document.getElementById('md5').value) calcAll();
+    });
+    updateCounts();
+</script>
+
+</MainGridLayout>

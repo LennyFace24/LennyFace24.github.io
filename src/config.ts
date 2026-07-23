@@ -26,6 +26,11 @@ export const siteConfig: SiteConfig = {
 			text: "", // Credit text to be displayed
 			url: "", // (Optional) URL link to the original artwork or artist's page
 		},
+		// 随机背景图：进入博客时从 API 拉取随机图片，失败则回退到上面的 src
+		random: {
+			enable: true,
+			api: "https://uapis.cn/api/v1/random/image?category=acg&type=pc",
+		},
 	},
 	toc: {
 		enable: true, // Display the table of contents on the right side of the post
