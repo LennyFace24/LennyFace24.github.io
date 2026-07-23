@@ -1,5 +1,5 @@
 media:
-  input: src/assets/images
+  input: public/assets/images
   output: /assets/images
   rename: safe
 
