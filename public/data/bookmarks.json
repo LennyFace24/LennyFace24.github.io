@@ -1,0 +1,15 @@
+{
+  "categories": [
+    {
+      "name": "动漫",
+      "icon": "material-symbols:movie-outline-rounded",
+      "sites": [
+        {
+          "name": "長門番堂 Yuc's Anime List",
+          "url": "https://yuc.wiki/",
+          "description": "新番动画时间表"
+        }
+      ]
+    }
+  ]
+}
