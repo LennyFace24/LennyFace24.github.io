@@ -7,4 +7,6 @@ https://space.bilibili.com/46765042
 
 itzlennyface@foxmail.com
 
-欢迎大佬来交流~
+个人的tg小窝
+
+t.me/bakon49876
